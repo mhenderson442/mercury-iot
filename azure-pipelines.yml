@@ -18,6 +18,13 @@ steps:
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
+  displayName: 'Restore solution file mercuryiot.sln'
+  inputs:
+    command: 'restore'
+    projects: mercuryiot.sln
+
+- task DotNetCoreCLI@2
+  displayName: 'Build solution file mercuryiot.sln' 
   inputs:
     command: 'restore'
     projects: mercuryiot.sln
