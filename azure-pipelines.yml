@@ -10,6 +10,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .Net 5'
+  inputs: 
+    packageType: sdk
+    version: 5.0.100-preview.3.20216.6
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
