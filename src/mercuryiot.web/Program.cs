@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace mercuryiot.web
+namespace Mercuryiot.Web
 {
     public class Program
     {
