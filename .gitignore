@@ -1,0 +1,13 @@
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+src/mercuryiot.web/appsettings.Development.json
+src/mercuryiot.web/Properties/launchSettings.json
+src/mercuryiot.web/bin/*
+src/mercuryiot.web/obj/*
