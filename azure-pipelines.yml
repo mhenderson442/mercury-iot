@@ -23,8 +23,8 @@ steps:
     command: 'restore'
     projects: mercuryiot.sln
 
-- task DotNetCoreCLI@2
+- task: DotNetCoreCLI@2
   displayName: 'Build solution file mercuryiot.sln' 
   inputs:
-    command: 'restore'
+    command: 'build'
     projects: mercuryiot.sln
