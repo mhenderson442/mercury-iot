@@ -11,3 +11,5 @@ src/mercuryiot.web/appsettings.Development.json
 src/mercuryiot.web/Properties/launchSettings.json
 src/mercuryiot.web/bin/*
 src/mercuryiot.web/obj/*
+test/mercuryiot.test.web/bin/*
+test/mercuryiot.test.web/obj/*
