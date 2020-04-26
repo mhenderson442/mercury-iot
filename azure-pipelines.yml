@@ -18,13 +18,28 @@ steps:
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
-  displayName: 'Restore solution file mercuryiot.sln'
+  displayName: 'dotnet restore'
   inputs:
     command: 'restore'
     projects: mercuryiot.sln
 
 - task: DotNetCoreCLI@2
-  displayName: 'Build solution file mercuryiot.sln' 
+  displayName: 'dotnet build' 
   inputs:
     command: 'build'
     projects: mercuryiot.sln
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish'
+  inputs:
+    command: publish
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**/mercuryiot.web/**/?(*.zip)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
