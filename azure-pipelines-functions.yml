@@ -21,14 +21,36 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .Net 5'
+  inputs: 
+    packageType: sdk
+    version: 5.0.100-preview.3.20216.6
+    installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- task: AzureFunctionApp@1
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
   inputs:
-    azureSubscription: 'Visual Studio Professional with MSDN (82ff2680-0183-486e-b8d7-693e550750cf)'
-    appType: 'functionApp'
-    appName: 'mercuryiotfunctions'
-    deployToSlotOrASE: true
-    resourceGroupName: 'sensor-monitoring'
-    slotName: 'production'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'auto'
+    command: 'restore'
+    projects: mercuryiot.functions.sln
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build' 
+  inputs:
+    command: 'build'
+    projects: mercuryiot.functions.sln
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish'
+  inputs:
+    command: publish
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**/mercuryiot.functionapp/**/?(*.zip)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
