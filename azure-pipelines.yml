@@ -10,9 +10,12 @@ trigger:
   paths:
     include:
       - docs/src/mercuryiot.web/*
+      - docs/test/mercuryiot.test.web/*
     exclude:
       - docs/README.md
+      - docs/src/mercuryiot.functionapp/*
       - docs/azure-pipelines.yaml
+      - docs/azure-pipelines-functions.yaml
       - docs/mercuryiot.functions.sln
 pool:
   vmImage: 'ubuntu-latest'
