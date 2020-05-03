@@ -20,6 +20,8 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+steps:
+
 - task: AzureFunctionApp@1
   inputs:
     azureSubscription: 'Visual Studio Professional with MSDN (82ff2680-0183-486e-b8d7-693e550750cf)'
