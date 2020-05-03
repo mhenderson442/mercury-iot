@@ -9,14 +9,14 @@ trigger:
       - master
   paths:
     include:
-      - docs/src/mercuryiot.functionapp/*
+      - src/mercuryiot.functionapp/*
     exclude:
-      - docs/README.md
-      - docs/azure-pipelines.yaml
-      - docs/azure-pipelines-functions.yaml
-      - docs/mercuryiot.sln
-      - docs/src/mercuryiot.web/*
-      - docs/test/mercuryiot.test.web/*
+      - README.md
+      - azure-pipelines.yaml
+      - azure-pipelines-functions.yaml
+      - mercuryiot.sln
+      - src/mercuryiot.web/*
+      - test/mercuryiot.test.web/*
 pool:
   vmImage: 'ubuntu-latest'
 
