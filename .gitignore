@@ -5,6 +5,8 @@
 !.vscode/extensions.json
 *.code-workspace
 
+.vs/*
+
 # Local History for Visual Studio Code
 .history/
 src/mercuryiot.web/appsettings.Development.json
@@ -14,3 +16,7 @@ src/mercuryiot.web/obj/*
 src/simulations/*
 test/mercuryiot.test.web/bin/*
 test/mercuryiot.test.web/obj/*
+
+src/mercuryiot.functionapp/.vs/*
+src/mercuryiot.functionapp/bin/*
+src/mercuryiot.functionapp/obj/*
