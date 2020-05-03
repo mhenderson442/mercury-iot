@@ -32,13 +32,13 @@ steps:
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
-    projects: src\mercuryiot.functionapp\mercuryiot.functions.csproj
+    projects: mercuryiot.functions.sln
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build' 
   inputs:
     command: 'build'
-    projects: src\mercuryiot.functionapp\mercuryiot.functions.csproj
+    projects: mercuryiot.functions.sln
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
