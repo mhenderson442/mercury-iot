@@ -52,9 +52,16 @@ steps:
   displayName: 'dotnet publish'
   inputs:
     command: publish
-
+- task: ArchiveFiles@2
+  displayName: 'archive files'
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  displayName: 'copy files to: $(Build.ArtifactStagingDirectory)'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: '**/mercuryiot.functionapp/**/?(*.zip)'
