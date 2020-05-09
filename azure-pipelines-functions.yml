@@ -22,20 +22,23 @@ pool:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .Net 5'
+  displayName: 'use .uet 5'
   inputs: 
     packageType: sdk
     version: 5.0.100-preview.3.20216.6
     installationPath: $(Agent.ToolsDirectory)/dotnet
+
 - task: UseDotNet@2
-  displayName: 'Use .Net 3'
+  displayName: 'use .uet 3'
   inputs: 
     packageType: sdk
     version: 3.0.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
+
 - task: FuncToolsInstaller@0
   inputs:
     version: 'latest'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
@@ -47,14 +50,13 @@ steps:
   inputs:
     command: 'build'
     projects: mercuryiot.functions.sln
-    arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
   inputs:
     command: publish
     publishWebProjects: false
-    arguments: '--configuration $(BuildConfiguration)'
+
 - task: ArchiveFiles@2
   displayName: 'archive files'
   inputs:
@@ -63,6 +65,7 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+
 - task: CopyFiles@2
   displayName: 'copy files to: $(Build.ArtifactStagingDirectory)'
   inputs:
