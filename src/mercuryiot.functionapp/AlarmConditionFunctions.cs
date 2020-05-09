@@ -7,7 +7,7 @@ namespace Mercuryiot.Functions
     {
 
         [FunctionName("AlarmConditionDequeue")]
-        public static void Run([ServiceBusTrigger("myqueue", Connection = "SensorMonitoringConnection")] string myQueueItem, ILogger log)
+        public static void Run([ServiceBusTrigger("alarm-condition-queue", Connection = "SensorMonitoringConnection")] string myQueueItem, ILogger log)
         {
             log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
         }
