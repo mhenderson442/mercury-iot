@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Mercuryiot.Functions
 {
-    public static class AlarmConditionDequeue
+    public static class AlarmConditionFunctions
     {
 
         [FunctionName("AlarmConditionDequeue")]
