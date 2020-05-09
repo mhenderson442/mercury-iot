@@ -3,6 +3,6 @@
     "Values": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-        "SensorMonitoringConnection":  "TEst"
+        "SensorMonitoringConnection":  "Endpoint=sb://sensor-monitoring-service-bus.servicebus.windows.net/;SharedAccessKeyName=sensor-monitoring-service-bus-listener;SharedAccessKey=RG5utIkIN2CDnQKUEX+6ve2RpIhdjj2ruxTxwUy42mY=;EntityPath=alarm-condition-queue"
     }
 }
