@@ -56,6 +56,7 @@ steps:
   inputs:
     command: publish
     publishWebProjects: false
+    projects: '**/*mercuryiot.functions.csproj'
 
 - task: ArchiveFiles@2
   displayName: 'archive files'
