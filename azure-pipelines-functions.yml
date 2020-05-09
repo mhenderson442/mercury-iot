@@ -27,7 +27,9 @@ steps:
     packageType: sdk
     version: 5.0.100-preview.3.20216.6
     installationPath: $(Agent.ToolsDirectory)/dotnet
-
+- task: FuncToolsInstaller@0
+  inputs:
+    version: 'latest'
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
