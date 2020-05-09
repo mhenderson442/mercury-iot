@@ -10,7 +10,6 @@ namespace Mercuryiot.Functions
         public static void Run([ServiceBusTrigger("myqueue", Connection = "SensorMonitoringConnection")] string myQueueItem, ILogger log)
         {
             log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
-            log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
         }
     }
 }
