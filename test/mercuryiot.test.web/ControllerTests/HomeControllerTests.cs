@@ -16,10 +16,9 @@ namespace Mercuryiot.Test.Web.ControllerTests
             _logger = new Mock<ILogger<HomeController>>();
         }
 
-        [Fact(DisplayName = "Home.Index method should return an instance of a ViewRestult.")]
+        [Fact(DisplayName = "Home.Index method should return an instance of a ViewResult.")]
         public async Task IndexReturnsView()
         {
-
             // Arrange
             var homeController = new HomeController(_logger.Object);
 

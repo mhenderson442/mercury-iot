@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F3AF628F-F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mercuryiot.test.web", "test\mercuryiot.test.web\mercuryiot.test.web.csproj", "{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mercuryiot.functions", "src\mercuryiot.functionapp\mercuryiot.functions.csproj", "{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mercuryiot.test.functions", "test\mercuryiot.test.functions\mercuryiot.test.functions.csproj", "{DE3E925B-C40A-4788-A952-F6657E435746}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,30 @@ Global
 		{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600}.Release|x64.Build.0 = Release|Any CPU
 		{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600}.Release|x86.ActiveCfg = Release|Any CPU
 		{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600}.Release|x86.Build.0 = Release|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Debug|x64.Build.0 = Debug|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Debug|x86.Build.0 = Debug|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Release|x64.ActiveCfg = Release|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Release|x64.Build.0 = Release|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Release|x86.ActiveCfg = Release|Any CPU
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40}.Release|x86.Build.0 = Release|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Debug|x64.Build.0 = Debug|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Debug|x86.Build.0 = Debug|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Release|x64.ActiveCfg = Release|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Release|x64.Build.0 = Release|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Release|x86.ActiveCfg = Release|Any CPU
+		{DE3E925B-C40A-4788-A952-F6657E435746}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +80,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5D9841C3-D4E0-400F-BD52-F3C4C1A58A48} = {0833FBCC-3913-4ADA-8D64-38164053871B}
 		{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600} = {F3AF628F-F652-4CB9-979E-2E53E425C6F2}
+		{E9B5DC55-D455-4E62-AD34-CA11DEA85A40} = {0833FBCC-3913-4ADA-8D64-38164053871B}
+		{DE3E925B-C40A-4788-A952-F6657E435746} = {F3AF628F-F652-4CB9-979E-2E53E425C6F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {927432BF-EBAE-4228-A770-6ABDAE7BAEAA}
