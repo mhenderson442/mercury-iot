@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Mercuryiot.Functions.Models;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace Mercuryiot.Functions.Services
 {
@@ -11,7 +12,7 @@ namespace Mercuryiot.Functions.Services
 
         Task<List<Client>> GetClients(string region);
 
-        Task<List<Region>> GetRegions();
+        Task<Dictionary<string, string>> GetRegions();
 
         Task<bool> InsertClient(Client client);
     }

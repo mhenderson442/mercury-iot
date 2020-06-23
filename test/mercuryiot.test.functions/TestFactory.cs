@@ -35,18 +35,24 @@ namespace Mercuryiot.Test.Functions
             return dictionary;
         }
 
-        public static async Task<Mock<HttpRequest>> CreateMockRequest(object body)
+        public static async Task<Mock<HttpRequest>> CreateMockRequestAsync(object body = null)
         {
             await Task.Yield();
+
             var ms = new MemoryStream();
-            var sw = new StreamWriter(ms);
 
-            var json = JsonSerializer.Serialize(body);
+            if(body != null)
+            {
+                
+                var sw = new StreamWriter(ms);
 
-            sw.Write(json);
-            sw.Flush();
+                var json = JsonSerializer.Serialize(body);
 
-            ms.Position = 0;
+                sw.Write(json);
+                sw.Flush();
+
+                ms.Position = 0;
+            }
 
             var mockRequest = new Mock<HttpRequest>();
             mockRequest.Setup(x => x.Body).Returns(ms);

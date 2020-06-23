@@ -23,20 +23,20 @@ namespace Mercuryiot.Functions.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<Region>> GetRegions()
+        public async Task<Dictionary<string, string>> GetRegions()
         {
             await Task.Yield();
 
-            var regions = new List<Region>
+            var regions = new Dictionary<string, string>
             {
-                Region.USCentral,
-                Region.USEast,
-                Region.USEast2,
-                Region.USNorthCentral,
-                Region.USSouthCentral,
-                Region.USWest,
-                Region.USWest2,
-                Region.USWestCentral
+                { Region.USCentral.Name, "US Central" },
+                { Region.USEast.Name, "US East" },
+                { Region.USEast2.Name, "US East" },
+                { Region.USNorthCentral.Name, "US North Central" },
+                { Region.USSouthCentral.Name, "US South Central" },
+                { Region.USWest.Name, "US West" },
+                { Region.USWest2.Name, "US West 2" },
+                { Region.USWestCentral.Name, "US West Central" },
             };
 
             return regions;

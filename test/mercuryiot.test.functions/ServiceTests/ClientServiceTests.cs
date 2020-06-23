@@ -73,7 +73,7 @@ namespace Mercuryiot.Test.Functions.ServiceTests
             var sut = await _clientService.GetRegions();
 
             // Assert
-            Assert.IsType<List<Region>>(sut);
+            Assert.IsType<Dictionary<string, string>>(sut);
         }
 
         [Fact(DisplayName = "InsertClient: Given a valid client parameters, the InsertClient method should return true.")]

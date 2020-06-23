@@ -19,7 +19,7 @@ namespace Mercuryiot.Test.Functions.FunctionTests
             var clientService = new Mock<IClientService>();
             clientService.Setup(x => x.InsertClient(It.IsAny<Client>())).ReturnsAsync(false);
 
-            var request = await TestFactory.CreateMockRequest(_badClient);
+            var request = await TestFactory.CreateMockRequestAsync(_badClient);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -36,7 +36,7 @@ namespace Mercuryiot.Test.Functions.FunctionTests
             var clientService = new Mock<IClientService>();
             clientService.Setup(x => x.InsertClient(It.IsAny<Client>())).ReturnsAsync(true);
 
-            var request = await TestFactory.CreateMockRequest(_goodClient);
+            var request = await TestFactory.CreateMockRequestAsync(_goodClient);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -54,7 +54,7 @@ namespace Mercuryiot.Test.Functions.FunctionTests
             var clientService = new Mock<IClientService>();
             clientService.Setup(x => x.InsertClient(It.IsAny<Client>())).Throws(new Exception());
 
-            var request = await TestFactory.CreateMockRequest(_badClient);
+            var request = await TestFactory.CreateMockRequestAsync(_badClient);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act

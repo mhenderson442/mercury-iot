@@ -56,6 +56,23 @@ namespace Mercuryiot.Functions
             }
         }
 
+        [FunctionName("GetRegionsTrigger")]
+        public async Task<IActionResult> GetRegionsTrigger([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
+        {
+            try
+            {
+                var regions = await _clientService.GetRegions();
+                return new OkObjectResult(regions);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError($"GetRegionsTrigger :: Unable to get regions data from server.");
+                _logger.LogError($"GetRegionsTrigger Error Message :: { ex.Message }");
+
+                return new InternalServerErrorResult();
+            }
+        }
+
         [FunctionName("GetClientsTrigger")]
         public async Task<IActionResult> GetClientsTrigger([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
         {
