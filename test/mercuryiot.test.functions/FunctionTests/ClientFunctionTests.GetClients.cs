@@ -12,6 +12,7 @@ using Xunit;
 
 namespace Mercuryiot.Test.Functions.FunctionTests
 {
+    [Trait("Function App Tests", "Client Function Tests")]
     public partial class ClientFunctionTests
     {
         [Fact(DisplayName = "GetClientsTrigger: Given a region parameter, The GetClientsTrigger should return an OK Result with a list of type Client.")]
@@ -22,7 +23,7 @@ namespace Mercuryiot.Test.Functions.FunctionTests
             var clientService = new Mock<IClientService>();
             clientService.Setup(x => x.GetClients(region)).ReturnsAsync(new List<Client>());
 
-            var request = await TestFactory.CreateHttpRequest("region", region);
+            var request = await TestFactory.CreateRegionHttpRequestAsync("region", region);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -41,7 +42,7 @@ namespace Mercuryiot.Test.Functions.FunctionTests
             var clientService = new Mock<IClientService>();
             clientService.Setup(x => x.GetClients(region)).ReturnsAsync(new List<Client>());
 
-            var request = await TestFactory.CreateHttpRequest("region", null);
+            var request = await TestFactory.CreateRegionHttpRequestAsync("region", null);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -58,7 +59,7 @@ namespace Mercuryiot.Test.Functions.FunctionTests
             var region = Region.USNorthCentral.Name;
             var clientService = new Mock<IClientService>();
 
-            var request = await TestFactory.CreateHttpRequest("region", region);
+            var request = await TestFactory.CreateRegionHttpRequestAsync("region", region);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -69,7 +70,6 @@ namespace Mercuryiot.Test.Functions.FunctionTests
         }
 
         [Fact(DisplayName = "GetClientTrigger: Given the service layer throws an exception, The GetClientTrigger should return an internal service error response.")]
-        [Trait("Category", "Client Function Tests")]
         public async Task GetClientsTrigger_GivenServiceThrowsException_ShouldReturnInternalServerError()
         {
             // Arrange
@@ -77,7 +77,7 @@ namespace Mercuryiot.Test.Functions.FunctionTests
             var clientService = new Mock<IClientService>();
             clientService.Setup(x => x.GetClients(region)).Throws(new Exception());
 
-            var request = await TestFactory.CreateHttpRequest("region", region);
+            var request = await TestFactory.CreateRegionHttpRequestAsync("region", region);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -95,7 +95,7 @@ namespace Mercuryiot.Test.Functions.FunctionTests
             var clientService = new Mock<IClientService>();
             clientService.Setup(x => x.GetClients(region)).ReturnsAsync(new List<Client>());
 
-            var request = await TestFactory.CreateHttpRequest("region", region);
+            var request = await TestFactory.CreateRegionHttpRequestAsync("region", region);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act

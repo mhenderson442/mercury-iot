@@ -7,8 +7,5 @@ namespace Mercuryiot.Web.Models
         public string SecondaryKey { get; set; }
         public Tags Tags { get; set; }
 
-        private string computedDerivedSymetricPrimaryKey;
-
-
     }
 }

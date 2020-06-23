@@ -16,7 +16,7 @@ namespace Mercuryiot.Functions.Services
             _clientRepository = clientRepository;
         }
 
-        public async Task<Client> GetClient(string customerKey) => await _clientRepository.GetClient(customerKey);
+        public async Task<Client> GetClient(string id, string region) => await _clientRepository.GetClient(id, region);
 
         public Task<List<Client>> GetClients(string region)
         {
@@ -43,5 +43,7 @@ namespace Mercuryiot.Functions.Services
         }
 
         public async Task<bool> InsertClient(Client client) => await _clientRepository.InsertClient(client);
+
+        public async Task<bool> UpdateClient(Client client) => await _clientRepository.UpdateClient(client);
     }
 }

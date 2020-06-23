@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mercuryiot.Functions.Models;
 using Mercuryiot.Functions.Repositories;
 using Mercuryiot.Functions.Services;
-using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
 using Moq;
 using Xunit;
 
@@ -13,29 +11,15 @@ namespace Mercuryiot.Test.Functions.ServiceTests
     [Trait("Function App Tests", "Client Service Tests")]
     public class ClientServiceTests
     {
-        private readonly string _badCustomerKey;
-        private readonly Mock<IClientRepository> _clientRepository;
-        private readonly ClientService _clientService;
-        private readonly string _customerKey;
-
-        public ClientServiceTests()
-        {
-            _customerKey = Guid.NewGuid().ToString();
-            _badCustomerKey = "Bad Customer Key";
-
-            _clientRepository = new Mock<IClientRepository>();
-            _clientRepository.Setup(x => x.GetClient(_customerKey)).ReturnsAsync(new Client());
-            _clientRepository.Setup(x => x.InsertClient(It.IsAny<Client>())).ReturnsAsync(true);
-
-            _clientService = new ClientService(_clientRepository.Object);
-        }
-
         [Fact(DisplayName = "GetClient: Given an invalid customer key, method should return null")]
         public async Task GetClient_GivenInvalidCustomerKey_ShouldReturnNull()
         {
             // Arrange
+            var clientRepository = new Mock<IClientRepository>();
+            var clientService = new ClientService(clientRepository.Object);
+
             // Act
-            var sut = await _clientService.GetClient(_badCustomerKey);
+            var sut = await clientService.GetClient(It.IsAny<string>(), It.IsAny<string>());
 
             // Assert
             Assert.True(sut == null);
@@ -45,21 +29,29 @@ namespace Mercuryiot.Test.Functions.ServiceTests
         public async Task GetClient_GivenValidCustomerKey_ShouldCallRepositoryMethod()
         {
             // Arrange
+            var clientRepository = new Mock<IClientRepository>();
+            clientRepository.Setup(x => x.GetClient(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Client());
+
+            var clientService = new ClientService(clientRepository.Object);
 
             // Act
-            _ = await _clientService.GetClient(_customerKey);
+            _ = await clientService.GetClient(It.IsAny<string>(), It.IsAny<string>());
 
             // Assert
-            _clientRepository.Verify(x => x.GetClient(_customerKey));
+            clientRepository.Verify(x => x.GetClient(It.IsAny<string>(), It.IsAny<string>()));
         }
 
         [Fact(DisplayName = "GetClient: Given a valid customer key, method should return an object of type Client")]
         public async Task GetClient_GivenValidCustomerKey_ShouldReturnCustomerObject()
         {
             // Arrange
+            var clientRepository = new Mock<IClientRepository>();
+            clientRepository.Setup(x => x.GetClient(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Client());
+
+            var clientService = new ClientService(clientRepository.Object);
 
             // Act
-            var sut = await _clientService.GetClient(_customerKey);
+            var sut = await clientService.GetClient(It.IsAny<string>(), It.IsAny<string>());
 
             // Assert
             Assert.IsType<Client>(sut);
@@ -69,8 +61,11 @@ namespace Mercuryiot.Test.Functions.ServiceTests
         public async Task GetRegions_Should_ReturnList()
         {
             // Arrange
+            var clientRepository = new Mock<IClientRepository>();
+            var clientService = new ClientService(clientRepository.Object);
+
             // Act
-            var sut = await _clientService.GetRegions();
+            var sut = await clientService.GetRegions();
 
             // Assert
             Assert.IsType<Dictionary<string, string>>(sut);
@@ -80,14 +75,34 @@ namespace Mercuryiot.Test.Functions.ServiceTests
         public async Task InsertClient_GivenValidClientParameter_MethodShouldreturnTrue()
         {
             // Arrange
-            var client = await TestFactory.CreateMockClientAsync();
+            var clientRepository = new Mock<IClientRepository>();
+            clientRepository.Setup(x => x.InsertClient(It.IsAny<Client>())).ReturnsAsync(true);
+
+            var clientService = new ClientService(clientRepository.Object);
 
             // Act
-            var sut = await _clientService.InsertClient(client);
+            var sut = await clientService.InsertClient(It.IsAny<Client>());
 
             // Assert
             Assert.True(sut);
-            _clientRepository.Verify(x => x.InsertClient(It.IsAny<Client>()));
+            clientRepository.Verify(x => x.InsertClient(It.IsAny<Client>()));
+        }
+
+        [Fact(DisplayName = "UpdateClient: Given a valid client parameters, the UpdateClient method should return true.")]
+        public async Task UpdateClient_GivenValidClientParameter_MethodShouldreturnTrue()
+        {
+            // Arrange
+            var clientRepository = new Mock<IClientRepository>();
+            clientRepository.Setup(x => x.UpdateClient(It.IsAny<Client>())).ReturnsAsync(true);
+
+            var clientService = new ClientService(clientRepository.Object);
+
+            // Act
+            var sut = await clientService.UpdateClient(It.IsAny<Client>());
+
+            // Assert
+            Assert.True(sut);
+            clientRepository.Verify(x => x.UpdateClient(It.IsAny<Client>()));
         }
     }
 }

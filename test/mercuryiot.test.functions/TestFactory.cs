@@ -13,17 +13,40 @@ namespace Mercuryiot.Test.Functions
 {
     public class TestFactory
     {
-        public static async Task<DefaultHttpRequest> CreateHttpRequest(string queryStringKey, string queryStringValue)
+        public static async Task<DefaultHttpRequest> CreateClientHttpRequestAsync(string key, string value)
         {
             var request = new DefaultHttpRequest(new DefaultHttpContext())
             {
-                Query = new QueryCollection(await CreateDictionary(queryStringKey, queryStringValue))
+                Query = new QueryCollection(await CreateClientDictionaryAsync(key, value))
             };
 
             return request;
         }
 
-        private static async Task<Dictionary<string, StringValues>> CreateDictionary(string key, string value)
+        public static async Task<DefaultHttpRequest> CreateRegionHttpRequestAsync(string key, string value)
+        {
+            var request = new DefaultHttpRequest(new DefaultHttpContext())
+            {
+                Query = new QueryCollection(await CreateRegionDictionaryAsync(key, value))
+            };
+
+            return request;
+        }
+
+        private static async Task<Dictionary<string, StringValues>> CreateClientDictionaryAsync(string key, string value)
+        {
+            await Task.Yield();
+
+            var dictionary = new Dictionary<string, StringValues>
+            {
+                { key, value },
+                { "region", "West US" }
+            };
+
+            return dictionary;
+        }
+
+        private static async Task<Dictionary<string, StringValues>> CreateRegionDictionaryAsync(string key, string value)
         {
             await Task.Yield();
 
@@ -66,10 +89,9 @@ namespace Mercuryiot.Test.Functions
 
             var client = new Client
             {
-                Key = Guid.NewGuid().ToString(),
+                id = Guid.NewGuid().ToString(),
                 Name = "Unit Test Client",
-                Region = "US West",
-                ttl = 600
+                Region = "West US"
             };
 
             return client;
@@ -79,7 +101,7 @@ namespace Mercuryiot.Test.Functions
         {
             var client = new Client
             {
-                Key = Guid.NewGuid().ToString(),
+                id = Guid.NewGuid().ToString(),
                 Name = "Unit Test Client",
                 Region = "US West",
                 ttl = 600

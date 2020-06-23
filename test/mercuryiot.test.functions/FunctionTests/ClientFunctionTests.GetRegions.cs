@@ -10,10 +10,10 @@ using Xunit;
 
 namespace Mercuryiot.Test.Functions.FunctionTests
 {
+    [Trait("Function App Tests", "Client Function Tests")]
     public partial class ClientFunctionTests
     {
         [Fact(DisplayName = "GetRegionsTrigger: Given the service layer throws an exception, The GetRegions should return an internal service error response.")]
-        [Trait("Category", "Client Function Tests")]
         public async Task GetRegionsTrigger_GivenServiceThrowsException_ShouldReturnInternalServerError()
         {
             // Arrange

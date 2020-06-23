@@ -10,16 +10,20 @@ using Xunit;
 
 namespace Mercuryiot.Test.Functions.FunctionTests
 {
+    [Trait("Function App Tests", "Client Function Tests")]
     public partial class ClientFunctionTests
     {
         [Fact(DisplayName = "GetClientTrigger: Given a client key parameter, The GetClientTrigger should return an OK Result with an object of type Client.")]
         public async Task ClientTriggerReturnsOkWithClientObject()
         {
             // Arrange
-            var clientService = new Mock<IClientService>();
-            clientService.Setup(x => x.GetClient(_customerKey)).ReturnsAsync(new Client());
+            var id = Guid.NewGuid().ToString();
+            var region = "West US";
 
-            var request = await TestFactory.CreateHttpRequest("customerKey", _customerKey);
+            var clientService = new Mock<IClientService>();
+            clientService.Setup(x => x.GetClient(id, region)).ReturnsAsync(new Client());
+
+            var request = await TestFactory.CreateClientHttpRequestAsync("id", id);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -35,9 +39,9 @@ namespace Mercuryiot.Test.Functions.FunctionTests
         {
             // Arrange
             var clientService = new Mock<IClientService>();
-            clientService.Setup(x => x.GetClient(_customerKey)).ReturnsAsync(new Client());
+            clientService.Setup(x => x.GetClient(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Client());
 
-            var request = await TestFactory.CreateHttpRequest("customerKey", null);
+            var request = await TestFactory.CreateClientHttpRequestAsync("Id", null);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -51,10 +55,11 @@ namespace Mercuryiot.Test.Functions.FunctionTests
         public async Task GetClientTrigger_GivenServiceReturnsNull_ShouldReturnBadRequest()
         {
             // Arrange
+            var id = Guid.NewGuid().ToString();
             var clientService = new Mock<IClientService>();
-            clientService.Setup(x => x.GetClient(_customerKey)).ReturnsAsync(new Client());
+            clientService.Setup(x => x.GetClient(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Client());
 
-            var request = await TestFactory.CreateHttpRequest("customerKey", _badCustomerKey);
+            var request = await TestFactory.CreateClientHttpRequestAsync("id", null);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -65,14 +70,17 @@ namespace Mercuryiot.Test.Functions.FunctionTests
         }
 
         [Fact(DisplayName = "GetClientTrigger: Given the service layer throws an exception, The GetClientTrigger should return an internal service error response.")]
-        [Trait("Category", "Client Function Tests")]
         public async Task GetClientTrigger_GivenServiceThrowsException_ShouldReturnInternalServerError()
         {
             // Arrange
-            var clientService = new Mock<IClientService>();
-            clientService.Setup(x => x.GetClient(_errorInput)).Throws(new Exception());
+            var id = Guid.NewGuid().ToString();
 
-            var request = await TestFactory.CreateHttpRequest("customerKey", _errorInput);
+            var clientService = new Mock<IClientService>();
+            var region = "West US";
+
+            clientService.Setup(x => x.GetClient(id, region)).Throws(new Exception());
+
+            var request = await TestFactory.CreateClientHttpRequestAsync("id", id);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
@@ -86,17 +94,20 @@ namespace Mercuryiot.Test.Functions.FunctionTests
         public async Task GetClientTrigger_GivenValidParamer_CallsServiceMethod()
         {
             // Arrange
-            var clientService = new Mock<IClientService>();
-            clientService.Setup(x => x.GetClient(_customerKey)).ReturnsAsync(new Client());
+            var id = Guid.NewGuid().ToString();
+            var region = "West US";
 
-            var request = await TestFactory.CreateHttpRequest("customerKey", _customerKey);
+            var clientService = new Mock<IClientService>();
+            clientService.Setup(x => x.GetClient(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Client());
+
+            var request = await TestFactory.CreateClientHttpRequestAsync("id", id);
             var clientFunctions = new ClientFunctions(_nullLogger, clientService.Object);
 
             // Act
             _ = (OkObjectResult)await clientFunctions.GetClientTrigger(request);
 
             // Assert
-            clientService.Verify(x => x.GetClient(_customerKey));
+            clientService.Verify(x => x.GetClient(id, region));
         }
     }
 }

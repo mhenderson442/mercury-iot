@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Mercuryiot.Functions.DataAccess;
 using Mercuryiot.Functions.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,23 +15,22 @@ namespace Mercuryiot.Functions.Repositories
             _clientContext = clientContext;
         }
 
-        public async Task<Client> GetClient(string customerKey)
+        public async Task<Client> GetClient(string id, string region)
         {
-            var client = await _clientContext.Clients.FirstOrDefaultAsync(x => x.Key == customerKey);
+            var client = await _clientContext.Clients.FirstOrDefaultAsync(x => x.id == id && x.Region == region);
             return client;
         }
 
         public async Task<bool> InsertClient(Client client)
         {
-            var entityEntry = await _clientContext.AddAsync<Client>(client);
+            _ = await _clientContext.AddAsync(client);
+            return await _clientContext.SaveChangesAsync() == 1;
+        }
 
-            if (entityEntry.Entity is Client)
-            {
-                await _clientContext.SaveChangesAsync();
-                return true;
-            }
-
-            return false;
+        public async Task<bool> UpdateClient(Client client)
+        {
+            _ = _clientContext.Update(client);
+            return await _clientContext.SaveChangesAsync() == 1;
         }
     }
 }
