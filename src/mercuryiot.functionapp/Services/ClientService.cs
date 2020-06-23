@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
 using Mercuryiot.Functions.Models;
 using Mercuryiot.Functions.Repositories;
@@ -19,6 +18,11 @@ namespace Mercuryiot.Functions.Services
 
         public async Task<Client> GetClient(string customerKey) => await _clientRepository.GetClient(customerKey);
 
+        public Task<List<Client>> GetClients(string region)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Region>> GetRegions()
         {
             await Task.Yield();
@@ -28,7 +32,7 @@ namespace Mercuryiot.Functions.Services
                 Region.USCentral,
                 Region.USEast,
                 Region.USEast2,
-                Region.USNorthCentral, 
+                Region.USNorthCentral,
                 Region.USSouthCentral,
                 Region.USWest,
                 Region.USWest2,

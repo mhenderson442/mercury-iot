@@ -56,6 +56,41 @@ namespace Mercuryiot.Functions
             }
         }
 
+        [FunctionName("GetClientsTrigger")]
+        public async Task<IActionResult> GetClientsTrigger([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
+        {
+            string region = req.Query["region"];
+
+            if (string.IsNullOrEmpty(region))
+            {
+                _logger.LogWarning($"GetClientsTrigger :: region was null or empty");
+                return new BadRequestResult();
+            }
+
+            try
+            {
+                _logger.LogInformation("GetClientTrigger :: Getting client object from service layer.");
+                var clients = await _clientService.GetClients(region);
+
+                if (clients != null)
+                {
+                    _logger.LogInformation($"GetClientTrigger :: Client object found. Customer Key: { region }.");
+                    return new OkObjectResult(clients);
+                }
+
+                _logger.LogWarning($"GetClientTrigger :: Query did not return an object. Customer Key: { region }.");
+                return new BadRequestResult();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError($"GetClientTrigger :: Attempting to get data for client threw an exception. Customer Key: { region }");
+                _logger.LogError($"GetClientTrigger Error Message :: { ex.Message }");
+
+                return new InternalServerErrorResult();
+            }
+        }
+
+
         [FunctionName("InsertClientTrigger")]
         public async Task<IActionResult> InsertClientTrigger([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req)
         {

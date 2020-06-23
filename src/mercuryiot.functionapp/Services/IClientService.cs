@@ -9,8 +9,10 @@ namespace Mercuryiot.Functions.Services
     {
         Task<Client> GetClient(string customerKey);
 
-        Task<bool> InsertClient(Client client);
+        Task<List<Client>> GetClients(string region);
 
         Task<List<Region>> GetRegions();
+
+        Task<bool> InsertClient(Client client);
     }
 }
