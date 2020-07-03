@@ -28,10 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\mercuryiot.functionapp\mercuryiot.functions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

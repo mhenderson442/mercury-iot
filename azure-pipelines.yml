@@ -32,7 +32,7 @@ steps:
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
-    projects: mercuryiot.sln
+    projects: mercury.web
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build' 
