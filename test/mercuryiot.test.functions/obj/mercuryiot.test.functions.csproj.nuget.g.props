@@ -24,6 +24,7 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">C:\Users\micha\.nuget\packages\xunit.analyzers\0.10.0</Pkgxunit_analyzers>
+    <PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets Condition=" '$(PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets)' == '' ">C:\Users\micha\.nuget\packages\microsoft.visualstudio.azure.containers.tools.targets\1.10.9</PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets>
     <PkgMicrosoft_Azure_WebJobs_Script_ExtensionsMetadataGenerator Condition=" '$(PkgMicrosoft_Azure_WebJobs_Script_ExtensionsMetadataGenerator)' == '' ">C:\Users\micha\.nuget\packages\microsoft.azure.webjobs.script.extensionsmetadatagenerator\1.1.8</PkgMicrosoft_Azure_WebJobs_Script_ExtensionsMetadataGenerator>
     <PkgMicrosoft_NET_Sdk_Functions Condition=" '$(PkgMicrosoft_NET_Sdk_Functions)' == '' ">C:\Users\micha\.nuget\packages\microsoft.net.sdk.functions\3.0.7</PkgMicrosoft_NET_Sdk_Functions>
   </PropertyGroup>

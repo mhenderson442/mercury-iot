@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "s6iG3rlTcQVVjtV7+7/bldDlAw1nOuK82sxJHMlnSIiyORUtltfwo2cb+kjmTDLnMAtoiUgIwf0Ew/Xc13999A==",
+  "dgSpecHash": "Mn7Q5nL/21BA5iJhYg+0AkTy45H8BDsLuvaz8PX7ucca41S6jOjCVx6B+50nw5qLOBxnWBW5OnqLjJLVeAe3FA==",
   "success": true,
   "projectFilePath": "C:\\GitHub\\mercury-iot\\test\\mercuryiot.test.functions\\mercuryiot.test.functions.csproj",
   "expectedPackageFiles": [
@@ -88,6 +88,7 @@
     "C:\\Users\\micha\\.nuget\\packages\\microsoft.rest.clientruntime.azure.authentication\\2.4.0\\microsoft.rest.clientruntime.azure.authentication.2.4.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\microsoft.testplatform.objectmodel\\16.6.1\\microsoft.testplatform.objectmodel.16.6.1.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\microsoft.testplatform.testhost\\16.6.1\\microsoft.testplatform.testhost.16.6.1.nupkg.sha512",
+    "C:\\Users\\micha\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.registry\\4.3.0\\microsoft.win32.registry.4.3.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\moq\\4.14.1\\moq.4.14.1.nupkg.sha512",

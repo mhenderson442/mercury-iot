@@ -5,6 +5,8 @@
     <UserSecretsId>1b60b236-fc31-48c2-b26f-c66836dabd0c</UserSecretsId>
     <AssemblyName>Mercuryiot.Web</AssemblyName>
     <RootNamespace>Mercuryiot.Web</RootNamespace>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,6 +35,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
 </Project>
