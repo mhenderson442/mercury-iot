@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using Mercuryiot.Functions.Models;
 using Mercuryiot.Functions.Repositories;
@@ -18,9 +19,24 @@ namespace Mercuryiot.Functions.Services
 
         public async Task<Client> GetClient(string id, string region) => await _clientRepository.GetClient(id, region);
 
-        public Task<List<Client>> GetClients(string region)
+        public async Task<List<Client>> GetClients(string region)
         {
-            throw new NotImplementedException();
+            var clients = await _clientRepository.GetClients(region);
+
+            return clients;
+        }
+
+        public async Task<List<Client>> GetClients()
+        {
+            var clients = new List<Client>();
+
+            foreach (var region in await GetRegions())
+            {
+                var regionClients = await _clientRepository.GetClients(region.Value);
+                clients.AddRange(regionClients);
+            }
+
+            return clients;
         }
 
         public async Task<Dictionary<string, string>> GetRegions()

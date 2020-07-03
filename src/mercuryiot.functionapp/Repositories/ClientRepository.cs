@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Mercuryiot.Functions.DataAccess;
 using Mercuryiot.Functions.Models;
@@ -19,6 +21,12 @@ namespace Mercuryiot.Functions.Repositories
         {
             var client = await _clientContext.Clients.FirstOrDefaultAsync(x => x.id == id && x.Region == region);
             return client;
+        }
+
+        public async Task<List<Client>> GetClients(string region)
+        {
+            var clients = await _clientContext.Clients.Where(x => x.Region == region).ToListAsync();
+            return clients;
         }
 
         public async Task<bool> InsertClient(Client client)

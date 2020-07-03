@@ -104,5 +104,41 @@ namespace Mercuryiot.Test.Functions.ServiceTests
             Assert.True(sut);
             clientRepository.Verify(x => x.UpdateClient(It.IsAny<Client>()));
         }
+
+
+        [Fact(DisplayName = "GetClients: Given a valid region parameter, the GetClients should return a list of clients")]
+        public async Task GetClients_GivenRegionParameter_ReturnsList()
+        {
+            // Arrange
+            var clientRepository = new Mock<IClientRepository>();
+            clientRepository.Setup(x => x.GetClients(It.IsAny<string>())).ReturnsAsync(new List<Client>());
+
+            var clientService = new ClientService(clientRepository.Object);
+
+            // Act
+            var sut = await clientService.GetClients(It.IsAny<string>());
+
+            // Assert
+            Assert.IsType<List<Client>>(sut);
+            clientRepository.Verify(x => x.GetClients(It.IsAny<string>()));
+        }
+
+        [Fact(DisplayName = "GetClients: Given no parameter, the GetClients should return a list of clients")]
+        public async Task GetClients_GivenNoParameter_ReturnsList()
+        {
+            // Arrange
+            var clientRepository = new Mock<IClientRepository>();
+            clientRepository.Setup(x => x.GetClients(It.IsAny<string>())).ReturnsAsync(new List<Client>());
+
+            var clientService = new ClientService(clientRepository.Object);
+
+            // Act
+            var sut = await clientService.GetClients();
+
+            // Assert
+            Assert.IsType<List<Client>>(sut);
+            clientRepository.Verify(x => x.GetClients(It.IsAny<string>()),Times.Exactly(8));
+        }
+
     }
 }

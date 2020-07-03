@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Mercuryiot.Functions.DataAccess;
@@ -38,7 +39,7 @@ namespace Mercuryiot.Test.Functions.RepositoryTests
         {
             // Arrange
             var client = await TestFactory.CreateMockClientAsync();
-            client.id = _id;
+            client.id = Guid.NewGuid().ToString();
             client.ttl = -1;
 
             // Act
@@ -75,6 +76,21 @@ namespace Mercuryiot.Test.Functions.RepositoryTests
             // Assert
             Assert.IsType<Client>(sut);
         }
+
+
+        [Fact(DisplayName = "Given a valid region, GetClients should return a list of clients")]
+        public async Task GetClients_Given_a_Region_Variable_GetClientsReturnsList()
+        {
+            // Arrange
+            var region = "West US";
+
+            // Act
+            var sut = await _ClientRepository.GetClients(region);
+
+            // Assert
+            Assert.IsType<List<Client>>(sut);
+        }
+
 
     }
 }

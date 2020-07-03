@@ -57,7 +57,7 @@ namespace Mercuryiot.Functions
         }
 
         [FunctionName("GetClientTrigger")]
-        public async Task<IActionResult> GetClientTrigger([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
+        public async Task<IActionResult> GetClientTrigger([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req)
         {
             string id = req.Query["id"];
             string region = req.Query["region"];
@@ -92,7 +92,7 @@ namespace Mercuryiot.Functions
         }
 
         [FunctionName("GetRegionsTrigger")]
-        public async Task<IActionResult> GetRegionsTrigger([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req)
+        public async Task<IActionResult> GetRegionsTrigger([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace Mercuryiot.Functions
             }
         }
         [FunctionName("InsertClientTrigger")]
-        public async Task<IActionResult> InsertClientTrigger([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req)
+        public async Task<IActionResult> InsertClientTrigger([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
         {
             var client = await JsonSerializer.DeserializeAsync<Client>(req.Body);
 
@@ -141,7 +141,7 @@ namespace Mercuryiot.Functions
         }
 
         [FunctionName("UpdateClientTrigger")]
-        public async Task<IActionResult> UpdateClientTrigger([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req)
+        public async Task<IActionResult> UpdateClientTrigger([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
         {
             var client = await JsonSerializer.DeserializeAsync<Client>(req.Body);
 
