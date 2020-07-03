@@ -22,7 +22,7 @@ pool:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .Net 5'
+  displayName: 'use .net 5'
   inputs: 
     packageType: sdk
     version: 5.0.100-preview.3.20216.6
