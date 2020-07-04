@@ -16,7 +16,6 @@ trigger:
       - docs/src/mercuryiot.functionapp/*
       - docs/azure-pipelines.yaml
       - docs/azure-pipelines-functions.yaml
-      - docs/mercuryiot.functions.sln
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -25,7 +24,7 @@ steps:
   displayName: 'use .net 5'
   inputs: 
     packageType: sdk
-    version: 5.0.100-preview.3.20216.6
+    version: 5.0.0-preview.6.20305.6
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
