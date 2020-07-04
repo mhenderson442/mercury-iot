@@ -10,9 +10,8 @@ namespace Mercuryiot.Test.Web.RespositoryTests
 {
     public class DataAccessTests
     {
-        private readonly Mock<ILogger<IDataAccess>> _logger;
-
         private readonly DataAccess _dataAccess;
+        private readonly Mock<ILogger<IDataAccess>> _logger;
 
         public DataAccessTests()
         {

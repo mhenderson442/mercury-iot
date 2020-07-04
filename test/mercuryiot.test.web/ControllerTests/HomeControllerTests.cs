@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Xunit;
 using Mercuryiot.Web.Controllers;
-using Moq;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Moq;
+using Xunit;
 
 namespace Mercuryiot.Test.Web.ControllerTests
 {
@@ -25,7 +25,7 @@ namespace Mercuryiot.Test.Web.ControllerTests
             // Act
             var sut = await homeController.Index();
 
-            // Assert 
+            // Assert
             Assert.IsType<ViewResult>(sut);
         }
     }
