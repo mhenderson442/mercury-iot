@@ -23,6 +23,7 @@ pool:
 
 steps:
 - task: NuGetToolInstaller@1
+displayName: 'nuget installer'
   inputs:
     checkLatest: true
 - task: UseDotNet@2
