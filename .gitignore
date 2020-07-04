@@ -14,9 +14,22 @@ src/mercuryiot.web/Properties/launchSettings.json
 src/mercuryiot.web/bin/*
 src/mercuryiot.web/obj/*
 src/simulations/*
-test/mercuryiot.test.web/bin/*
-test/mercuryiot.test.web/obj/*
 
-src/mercuryiot.functionapp/.vs/*
-src/mercuryiot.functionapp/bin/*
-src/mercuryiot.functionapp/obj/*
+bin/
+obj/
+
+src/mercuryiot.functionapp/.vs/
+src/mercuryiot.functionapp/bin/
+src/mercuryiot.functionapp/obj/
+
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/

@@ -9,6 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8EA35596-3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mercuryiot.functions", "src\mercuryiot.functionapp\mercuryiot.functions.csproj", "{846DD945-1F46-41E3-9B25-E1211D57115A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{C71A953C-FC8A-490E-B262-1412048531B8}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines-functions.yml = azure-pipelines-functions.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mercuryiot.test.functions", "test\mercuryiot.test.functions\mercuryiot.test.functions.csproj", "{B7380EB6-6DD6-4D71-9752-E6FDF819FD3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,12 +26,17 @@ Global
 		{846DD945-1F46-41E3-9B25-E1211D57115A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{846DD945-1F46-41E3-9B25-E1211D57115A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{846DD945-1F46-41E3-9B25-E1211D57115A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7380EB6-6DD6-4D71-9752-E6FDF819FD3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7380EB6-6DD6-4D71-9752-E6FDF819FD3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7380EB6-6DD6-4D71-9752-E6FDF819FD3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7380EB6-6DD6-4D71-9752-E6FDF819FD3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{846DD945-1F46-41E3-9B25-E1211D57115A} = {85F217A4-C650-440C-BB49-727BAB048DA9}
+		{B7380EB6-6DD6-4D71-9752-E6FDF819FD3D} = {8EA35596-3A1F-4894-A132-3837D4E82BBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCBA4087-A650-4FEA-ACC5-29BF60A2D62D}

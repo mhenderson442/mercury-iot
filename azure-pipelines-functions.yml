@@ -14,6 +14,7 @@ trigger:
       - README.md
       - azure-pipelines.yaml
       - azure-pipelines-functions.yaml
+      - mercury-iot-web-azure-pipeline.yaml
       - mercuryiot.sln
       - src/mercuryiot.web/*
       - test/mercuryiot.test.web/*
@@ -22,20 +23,14 @@ pool:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'use .uet 5'
-  inputs: 
-    packageType: sdk
-    version: 5.0.100-preview.3.20216.6
-    installationPath: $(Agent.ToolsDirectory)/dotnet
-
-- task: UseDotNet@2
-  displayName: 'use .uet 3'
+  displayName: 'use .net 3'
   inputs: 
     packageType: sdk
     version: 3.0.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: FuncToolsInstaller@0
+  displayName: 'function installer'
   inputs:
     version: 'latest'
 
@@ -75,4 +70,4 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+  displayName: 'publish artifact: drop'
