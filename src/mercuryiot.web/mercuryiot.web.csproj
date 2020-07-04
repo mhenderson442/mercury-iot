@@ -5,8 +5,6 @@
     <UserSecretsId>1b60b236-fc31-48c2-b26f-c66836dabd0c</UserSecretsId>
     <AssemblyName>Mercuryiot.Web</AssemblyName>
     <RootNamespace>Mercuryiot.Web</RootNamespace>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,7 +26,7 @@
     <PackageReference Include="Microsoft.Azure.Devices.Shared" Version="1.20.1" />
     <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.5" />
     <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.5.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.0.0-preview4.20142.4" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
