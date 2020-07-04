@@ -11,17 +11,9 @@
 .history/
 src/mercuryiot.web/appsettings.Development.json
 src/mercuryiot.web/Properties/launchSettings.json
-src/mercuryiot.web/bin/*
-src/mercuryiot.web/obj/*
 src/simulations/*
 
-bin/
-obj/
-
 src/mercuryiot.functionapp/.vs/
-src/mercuryiot.functionapp/bin/
-src/mercuryiot.functionapp/obj/
-
 
 # Build results
 [Dd]ebug/
