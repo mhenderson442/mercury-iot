@@ -22,6 +22,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: NuGetToolInstaller@1
+  inputs:
+    checkLatest: true
 - task: UseDotNet@2
   displayName: 'use .net 3'
   inputs: 
