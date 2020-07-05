@@ -2,11 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-
     <IsPackable>false</IsPackable>
-
     <AssemblyName>Mercuryiot.Test.Functions</AssemblyName>
-
     <RootNamespace>Mercuryiot.Test.Functions</RootNamespace>
   </PropertyGroup>
 

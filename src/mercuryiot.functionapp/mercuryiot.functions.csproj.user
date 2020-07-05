@@ -2,5 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>Docker</ActiveDebugProfile>
+    <_LastSelectedProfileId>C:\GitHub\mercury-iot\src\mercuryiot.functionapp\Properties\PublishProfiles\mercurt-iot-functions - Zip Deploy.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
 </Project>
