@@ -22,18 +22,25 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: NuGetToolInstaller@1
+  displayName: 'nuget installer'
+  inputs:
+    checkLatest: true
 - task: UseDotNet@2
   displayName: 'use .net 3'
   inputs: 
     packageType: sdk
-    version: 3.0.x
-    installationPath: $(Agent.ToolsDirectory)/dotnet
-
+    version: 3.x
+- task: UseDotNet@2
+  displayName: 'use .net 5'
+  inputs: 
+    packageType: sdk
+    version: '5.0.x'
+    includePreviewVersions: true
 - task: FuncToolsInstaller@0
   displayName: 'function installer'
   inputs:
     version: 'latest'
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
