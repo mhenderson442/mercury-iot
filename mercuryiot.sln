@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{
 		mercury-iot-web-azure-pipeline.yml = mercury-iot-web-azure-pipeline.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mercuryiot.dataaccess.test", "src\mercuryiot.dataaccess.test\mercuryiot.dataaccess.test.csproj", "{D94397A6-6623-443B-8E98-8F31C583DE42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600}.Release|x64.Build.0 = Release|Any CPU
 		{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600}.Release|x86.ActiveCfg = Release|Any CPU
 		{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600}.Release|x86.Build.0 = Release|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Debug|x64.Build.0 = Debug|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Debug|x86.Build.0 = Debug|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Release|x64.ActiveCfg = Release|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Release|x64.Build.0 = Release|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Release|x86.ActiveCfg = Release|Any CPU
+		{D94397A6-6623-443B-8E98-8F31C583DE42}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +76,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5D9841C3-D4E0-400F-BD52-F3C4C1A58A48} = {0833FBCC-3913-4ADA-8D64-38164053871B}
 		{32DEFBF6-0CBC-45FB-91BF-263CCBC9F600} = {F3AF628F-F652-4CB9-979E-2E53E425C6F2}
+		{D94397A6-6623-443B-8E98-8F31C583DE42} = {F3AF628F-F652-4CB9-979E-2E53E425C6F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {927432BF-EBAE-4228-A770-6ABDAE7BAEAA}
