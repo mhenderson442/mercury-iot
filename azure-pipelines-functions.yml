@@ -30,14 +30,12 @@ steps:
   displayName: 'use .net 3'
   inputs: 
     packageType: sdk
-    version: 3.0.x
+    version: 3.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
-
 - task: FuncToolsInstaller@0
   displayName: 'function installer'
   inputs:
     version: 'latest'
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
