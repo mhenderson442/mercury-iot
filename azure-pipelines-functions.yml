@@ -31,7 +31,12 @@ steps:
   inputs: 
     packageType: sdk
     version: 3.x
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+- task: UseDotNet@2
+  displayName: 'use .net 5'
+  inputs: 
+    packageType: sdk
+    version: '5.0.x'
+    includePreviewVersions: true
 - task: FuncToolsInstaller@0
   displayName: 'function installer'
   inputs:
