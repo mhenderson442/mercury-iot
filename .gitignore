@@ -26,3 +26,4 @@ bld/
 [Bb]in/
 [Oo]bj/
 /src/mercuryiot.functionapp/Properties/PublishProfiles
+/mercury-iot/.vs/mercury-iot/v16
