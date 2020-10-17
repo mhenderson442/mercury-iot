@@ -1,0 +1,13 @@
+name: "mercury-iot-pipeline"
+resources:
+  repositories:
+  - repository: mhederson442
+    type: github
+    name: mhenderson442
+    endpoint: mhenderson442
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildJob
+        steps:
+          - script: echo Building.
