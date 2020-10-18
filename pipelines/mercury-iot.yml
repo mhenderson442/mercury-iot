@@ -15,7 +15,7 @@ jobs:
       displayName: 'Create or update resource group'
       inputs:
         azureResourceManagerConnection: 'VSProSubscription'
-        subscriptionId: '$(DeploymentVariables.deploymentSubscription)'
+        subscriptionId: '$(deploymentSubscription)'
         action: 'Create Or Update Resource Group'
         resourceGroupName: 'mercury-iot'
         location: 'North Central US'
