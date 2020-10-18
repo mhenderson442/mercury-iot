@@ -1,10 +1,21 @@
 trigger:
-  - master
+  - none
 
 pool:
   vmImage: 'ubuntu-latest'
+
+variables:
+  group: DeploymentVariables
 
 jobs:
   - job: hello
     steps:
     - script: echo hello yaml.
+    - task: AzureResourceGroupDeployment@2
+      inputs:
+        azureSubscription: $(deploymentSuvscriptionKey)
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'mercury-iot'
+        location: 'North Central US'
+
+        
