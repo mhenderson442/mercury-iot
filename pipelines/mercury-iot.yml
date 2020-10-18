@@ -2,7 +2,7 @@ trigger:
   - none
 
 pool:
-  vmImage: 'Hosted Windows 2019 with VS2019'
+  vmImage: 'ubuntu-latest'
 
 variables:
   group: DeploymentVariables
@@ -11,10 +11,11 @@ jobs:
   - job: hello
     steps:
     - script: echo hello yaml.
-    - task: AzureResourceGroupDeployment@2
+    - task: AzureResourceManagerTemplateDeployment@3
       displayName: 'Create or update resource group'
       inputs:
-        azureSubscription: 'VSProSubscription'
+        azureResourceManagerConnection: 'VSProSubscription'
+        subscriptionId: $(DeploymentVariables.deploymentSubscription)
         action: 'Create Or Update Resource Group'
         resourceGroupName: 'mercury-iot'
         location: 'North Central US'
