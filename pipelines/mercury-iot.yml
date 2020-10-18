@@ -22,5 +22,5 @@ jobs:
         templateLocation: 'URL of the file'
         csmFileLink: 'https://github.com/mhenderson442/mercury-iot/blob/master/templates/mercury-iot-template.json'
         csmParametersFileLink: 'https://github.com/mhenderson442/mercury-iot/blob/master/templates/mercury-iot-template.parameters.json'
-
+        deploymentMode: 'Incremental'
         
