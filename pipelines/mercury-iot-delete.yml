@@ -14,6 +14,7 @@ jobs:
     - task: AzureResourceManagerTemplateDeployment@3
       displayName: 'Delete Resource Group and Resources'
       inputs:
+        deploymentScope: 'Resource Group'
         azureResourceManagerConnection: 'VSProSubscription'
         subscriptionId: '$(deploymentSubscription)'
         action: 'DeleteRG'
