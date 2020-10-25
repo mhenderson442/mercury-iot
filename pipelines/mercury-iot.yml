@@ -20,7 +20,6 @@ jobs:
         resourceGroupName: 'mercury-iot'
         location: 'North Central US'
         templateLocation: 'URL of the file'
-        csmFileLink: 'https://github.com/mhenderson442/mercury-iot/blob/master/templates/mercury-iot-template.json'
-        csmParametersFileLink: 'https://github.com/mhenderson442/mercury-iot/blob/master/templates/mercury-iot-template.parameters.json'
-        deploymentMode: 'Incremental'
-        
+        csmFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.json'
+        csmParametersFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.parameters.json'
+        deploymentMode: 'Incremental'        
