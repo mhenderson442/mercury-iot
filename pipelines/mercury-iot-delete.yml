@@ -18,4 +18,5 @@ jobs:
         subscriptionId: '$(deploymentSubscription)'
         action: 'deleteRG'
         resourceGroupName: 'mercury-iot'
+        location: 'North Central US'
         deploymentMode: 'Incremental'        
