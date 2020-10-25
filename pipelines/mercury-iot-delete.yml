@@ -9,17 +9,13 @@ variables:
 
 jobs:
   - job: CreateResourceGroup
-    displayName: 'Create Resource Group and Resources'
+    displayName: 'Delete resource group.'
     steps:
     - task: AzureResourceManagerTemplateDeployment@3
-      displayName: 'Create or update resource group'
+      displayName: 'Delete resource group.'
       inputs:
         azureResourceManagerConnection: 'VSProSubscription'
         subscriptionId: '$(deploymentSubscription)'
-        action: 'Create Or Update Resource Group'
+        action: 'DeleteRG'
         resourceGroupName: 'mercury-iot'
-        location: 'North Central US'
-        templateLocation: 'URL of the file'
-        csmFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.json'
-        csmParametersFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.parameters.json'
-        deploymentMode: 'Incremental'        
+        location: 'North Central US' 
