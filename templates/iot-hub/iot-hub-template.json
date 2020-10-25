@@ -1,0 +1,67 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "hubName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of IoT hub"
+            }
+        },
+        "d2c_partitions": {
+            "type": "string",
+            "metadata": {
+                "description": "Number of partitions"
+            }
+        },
+        "features": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        },
+        "sku_name": {
+            "type": "string",
+            "metadata": {
+                "description": "Enter a SKU name"
+            }
+        },
+        "sku_units": {
+            "type": "string",
+            "metadata": {
+                "description": "Enter the number of units."
+            }
+        },
+        "tags": {
+            "type": "object",
+            "metadata": {
+                "description": "Tags associated with project."
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Devices/IotHubs",
+            "name": "[parameters('hubName')]",
+            "apiVersion": "2020-04-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "eventHubEndpoints": {
+                    "events": {
+                        "retentionTimeInDays": 1,
+                        "partitionCount": "[parameters('d2c_partitions')]"
+                    }
+                },
+                "features": "[parameters('features')]"
+            },
+            "sku": {
+                "name": "[parameters('sku_name')]",
+                "capacity": "[parameters('sku_units')]"
+            },
+            "tags": "[parameters('tags')]"
+        }
+    ],
+    "outputs": {}
+}

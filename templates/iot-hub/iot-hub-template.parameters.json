@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "hubName": {
+            "value": "mercury-iot-hub"
+        },
+        "d2c_partitions": {
+            "value": "4"
+        },
+        "features": {
+            "value": "None"
+        },
+        "sku_name": {
+            "value": "S1"
+        },
+        "sku_units": {
+            "value": "1"
+        },
+        "tags": {
+            "value": {
+                "Project": "Mercury Iot Hub"
+            }
+        }
+    }
+}
