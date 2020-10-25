@@ -9,7 +9,7 @@ variables:
 
 jobs:
   - job: CreateResourceGroup
-    displayName: 'Delete resource group.'
+    displayName: 'Delete resource group and resources.'
     steps:
     - task: AzureResourceManagerTemplateDeployment@3
       displayName: 'Delete resource group.'
