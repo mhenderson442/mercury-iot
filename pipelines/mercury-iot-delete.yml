@@ -16,7 +16,7 @@ jobs:
       inputs:
         azureResourceManagerConnection: 'VSProSubscription'
         subscriptionId: '$(deploymentSubscription)'
-        action: 'deleteRG'
+        action: 'DeleteRG'
         resourceGroupName: 'mercury-iot'
         location: 'North Central US'
         deploymentMode: 'Incremental'        
