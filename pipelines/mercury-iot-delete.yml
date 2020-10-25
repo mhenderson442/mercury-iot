@@ -15,7 +15,7 @@ jobs:
       displayName: 'Delete resource group.'
       inputs:
         azureResourceManagerConnection: 'VSProSubscription'
-        subscriptionId: $(deploymentSubscription)
+        subscriptionId: '$(deploymentSubscription)'
         action: 'DeleteRG'
         resourceGroupName: 'mercury-iot'
         location: 'North Central US' 
