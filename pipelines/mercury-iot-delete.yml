@@ -9,10 +9,10 @@ variables:
 
 jobs:
   - job: CreateResourceGroup
-    displayName: 'Delete Resource Group and Resources'
+    displayName: 'Delete Resource Group'
     steps:
     - task: AzureResourceManagerTemplateDeployment@3
-      displayName: 'Create or update resource group'
+      displayName: 'Delete Resource Group and Resources'
       inputs:
         azureResourceManagerConnection: 'VSProSubscription'
         subscriptionId: '$(deploymentSubscription)'
