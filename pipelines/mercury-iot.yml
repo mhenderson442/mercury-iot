@@ -8,9 +8,9 @@ variables:
   group: DeploymentVariables
 
 jobs:
-  - job: hello
+  - job: CreateResourceGroup
+    displayName: 'Create Resource Group and Resources'
     steps:
-    - script: echo hello yaml.
     - task: AzureResourceManagerTemplateDeployment@3
       displayName: 'Create or update resource group'
       inputs:
