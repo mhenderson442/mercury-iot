@@ -11,6 +11,23 @@
     },
     "functions": [],
     "variables": {},
-    "resources": [],
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "iotHubDepoymentTemplate",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/iot-hub/iot-hub-template.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/iot-hub/iot-hub-template.parameters.json",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        }
+    ],
     "outputs": {}
 }
