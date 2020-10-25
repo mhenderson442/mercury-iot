@@ -1,0 +1,21 @@
+trigger:
+  - none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  group: DeploymentVariables
+
+jobs:
+  - job: CreateResourceGroup
+    displayName: 'Delete Resource Group and Resources'
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      displayName: 'Create or update resource group'
+      inputs:
+        azureResourceManagerConnection: 'VSProSubscription'
+        subscriptionId: '$(deploymentSubscription)'
+        action: 'deleteRG'
+        resourceGroupName: 'mercury-iot'
+        deploymentMode: 'Incremental'        
