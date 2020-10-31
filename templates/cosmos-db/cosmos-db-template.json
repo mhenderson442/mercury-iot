@@ -27,8 +27,9 @@
                "enableFreeTier": true,
                "locations": [
                    {
-                       "locationName": "[concat(parameters('cosmosAccountName'),'-',resourceGroup().location)]",
-                       "failoverPriority": 0
+                       "id": "[concat(parameters('cosmosAccountName'),'-',resourceGroup().location)]",
+                       "failoverPriority": 0,
+                       "locationName": "[resourceGroup().location]"
                    }
                ],
                "databaseAccountOfferType": "Standard",
