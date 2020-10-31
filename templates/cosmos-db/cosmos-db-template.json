@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "cosmosAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of Cosmos Db account."
+            }
+        },
+        "databaseName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of Cosmos DB Database"
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+       {
+           "name": "[parameters('cosmosAccountName')]",
+           "type": "Microsoft.DocumentDB/databaseAccounts",
+           "apiVersion": "2020-04-01",
+           "location": "[resourceGroup().location]",
+           "properties": {
+               "enableFreeTier": true,
+               "locations": [
+                   {
+                       "locationName": "[concat(parameters('cosmosAccountName'),'-',resourceGroup().location)]",
+                       "failoverPriority": 0
+                   }
+               ],
+               "databaseAccountOfferType": "Standard",
+               "ipRangeFilter": "ipRangeFilter",
+               "enableAutomaticFailover": true,
+               "capabilities": [
+                   {
+                       "name": "EnableTable"
+                   }
+               ]
+           }
+       },
+       {
+           "type": "Microsoft.DocumentDB/databaseAccounts/apis/databases",
+           "name": "[concat(parameters('cosmosAccountName'), '/sql/', parameters('databaseName'))]",
+           "apiVersion": "2016-03-31",
+           "dependsOn": [ "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosAccountName'))]" ],
+           "properties": {
+               "resource": {
+                   "id": "[parameters('databaseName')]"
+               },
+               "options": {
+                   "throughput": "400"
+               }
+           }
+       }
+    ],
+    "outputs": {}
+}

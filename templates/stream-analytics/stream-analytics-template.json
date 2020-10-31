@@ -16,7 +16,24 @@
             "type": "Microsoft.StreamAnalytics/streamingjobs",
             "apiVersion": "2016-03-01",
             "name": "[parameters('streamAnalyticsName')]",
-            "location": "[resourceGroup().location]"
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "sku": {
+                    "name": "Standard"
+                },
+                "dataLocale": "en-US",
+                "outputErrorPolicy": "Stop",
+                "eventsOutOfOrderPolicy": "Adjust",
+                "eventsOutOfOrderMaxDelayInSeconds": 0,
+                "eventsLateArrivalMaxDelayInSeconds": 5,
+                "transformation": {
+                    "name": "IotTransformation",
+                    "properties": {
+                        "streamingUnits": 1
+                    }
+                }
+            }
+            
         }
     ],
     "outputs": {}

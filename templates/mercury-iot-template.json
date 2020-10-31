@@ -10,12 +10,14 @@
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "demploymentName": "[concat(parameters('prefix'),'HubDepoymentTemplate')]"
+    },
     "resources": [
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
-            "name": "iotHubDepoymentTemplate",
+            "name": "[variables('demploymentName')]",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -29,5 +31,10 @@
             }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "output1": {
+            "type": "string",
+            "value": "value"
+        }
+    }
 }
