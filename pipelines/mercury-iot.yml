@@ -18,7 +18,7 @@ jobs:
         subscriptionId: '$(deploymentSubscription)'
         action: 'Create Or Update Resource Group'
         resourceGroupName: 'mercury-iot'
-        location: 'North Central US'
+        location: 'Central US'
         templateLocation: 'URL of the file'
         csmFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.json'
         csmParametersFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.parameters.json'
