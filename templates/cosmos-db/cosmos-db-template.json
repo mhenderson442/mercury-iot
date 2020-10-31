@@ -32,8 +32,6 @@
                    }
                ],
                "databaseAccountOfferType": "Standard",
-               "ipRangeFilter": "ipRangeFilter",
-               "enableAutomaticFailover": true,
                "capabilities": [
                    {
                        "name": "EnableTable"
