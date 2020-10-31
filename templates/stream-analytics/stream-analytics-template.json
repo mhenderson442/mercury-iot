@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "streamAnalyticsName": {
+            "type": "string",
+            "metadata": {
+                "description": "Enter the name of the Stream Analytics jobs."
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.StreamAnalytics/streamingjobs",
+            "apiVersion": "2016-03-01",
+            "name": "[parameters('streamAnalyticsName')]",
+            "location": "[resourceGroup().location]"
+        }
+    ],
+    "outputs": {}
+}
