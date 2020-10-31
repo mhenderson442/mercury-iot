@@ -11,13 +11,14 @@
     },
     "functions": [],
     "variables": {
-        "demploymentName": "[concat(parameters('prefix'),'HubDepoymentTemplate')]"
+        "hubDemploymentName": "[concat(parameters('prefix'),'HubDepoymentTemplate')]",
+        "cosmosDeploymentName": "[concat(parameters('prefix'),'CosmosDepoymentTemplate')]"
     },
     "resources": [
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
-            "name": "[variables('demploymentName')]",
+            "name": "[variables('hubDemploymentName')]",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -26,6 +27,22 @@
                 },
                 "parametersLink": {
                     "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/iot-hub/iot-hub-template.parameters.json",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('cosmosDeploymentName')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/cosmos-db/cosmos-db-template.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/cosmos-db/cosmos-db-template.parameters.json",
                     "contentVersion": "1.0.0.0"
                 }
             }
