@@ -32,19 +32,22 @@
                        "locationName": "[resourceGroup().location]"
                    }
                ],
-                "backupPolicy": {
-                    "type": "Periodic",
-                    "periodicModeProperties": {
-                        "backupIntervalInMinutes": 240,
-                        "backupRetentionIntervalInHours": 8
-                    }
-                },
-                "isVirtualNetworkFilterEnabled": false,
-                "virtualNetworkRules": [],
-                "ipRules": [],
-                "dependsOn": [],
-                "enableMultipleWriteLocations": false,
-                "capabilities": []
+               "databaseAccountOfferType": "Standard",
+               "capabilities": []
+           }
+       },
+       {
+           "type": "Microsoft.DocumentDB/databaseAccounts/apis/databases",
+           "name": "[concat(parameters('cosmosAccountName'), '/sql/', parameters('databaseName'))]",
+           "apiVersion": "2016-03-31",
+           "dependsOn": [ "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosAccountName'))]" ],
+           "properties": {
+               "resource": {
+                   "id": "[parameters('databaseName')]"
+               },
+               "options": {
+                   "throughput": "400"
+               }
            }
        }
     ],
