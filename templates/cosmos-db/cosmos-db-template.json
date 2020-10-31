@@ -32,8 +32,10 @@
                        "locationName": "[resourceGroup().location]"
                    }
                ],
-               "databaseAccountOfferType": "Standard",
-               "capabilities": []
+               "consistencyPolicy": {
+                   "defaultConsistencyLevel": "Session"
+               },
+               "databaseAccountOfferType": "Standard"
            }
        },
        {
