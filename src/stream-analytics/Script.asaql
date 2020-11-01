@@ -1,1 +1,1 @@
-﻿
+﻿SELECT * INTO Output FROM Input

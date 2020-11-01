@@ -1,3 +1,14 @@
-{
-	"ScriptType": "Output"
+﻿{
+  "Name": "Output",
+  "DataSourceType": "DocumentDB",
+  "DocumentDbProperties": {
+    "AccountId": "mercury-iot-cosmos-data",
+    "AccountKey": null,
+    "Database": "sensor",
+    "CollectionNamePattern": "reading",
+    "DocumentId": null,
+    "PartitionKey": ""
+  },
+  "DataSourceCredentialDomain": "774acd92-47f2-4b38-99c1-5e3b23277d37.StreamAnalystics",
+  "ScriptType": "Output"
 }

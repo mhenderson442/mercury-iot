@@ -1,14 +1,55 @@
 trigger:
   - none
 
-pool:
-  vmImage: 'ubuntu-latest'
-
 variables:
   group: DeploymentVariables
 
 jobs:
+  - job: BuildStreamAnaltics
+    pool:
+      vmImage: 'ubuntu-latest'
+    displayName: 'Build Azure Stream Analytics'
+    steps:
+      - task: UseDotNet@2
+        displayName: 'Use .Net Preview'
+        inputs:
+          version: '5.0.x'
+          includePreviewVersions: true
+      - task: UseDotNet@2
+        inputs:
+          version: '3.0.x'
+          packageType: runtime
+      - task: UseDotNet@2
+        displayName: 'Install .NET Core SDK'
+        inputs:
+          version: 5.0.x
+          performMultiLevelLookup: true
+          includePreviewVersions: true
+      - task: DotNetCoreCLI@2
+        displayName: 'Restored Nuget packages.'
+        inputs:
+          command: restore 
+          projects: '**/*Mercury.StreamAnalytics.asaproj'
+      - task: DotNetCoreCLI@2
+        displayName: 'Build stream analytics prokect'
+        inputs:
+          command: build
+          projects: '**/*Mercury.StreamAnalytics.asaproj'
+      - task: CopyFiles@2
+        displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+        inputs:
+          sourceFolder: $(system.defaultworkingdirectory)/$(outputPath)/
+          contents: '**' 
+          targetFolder: $(build.artifactstagingdirectory)
+      - task: PublishBuildArtifacts@1
+        displayName: 'Public artifact: drop'
+        inputs:
+          pathToPublish: '$(Build.ArtifactStagingDirectory)' 
+          artifactName: 'drop'
+
   - job: CreateResourceGroup
+    pool:
+      vmImage: 'ubuntu-latest'
     displayName: 'Create Resource Group and Resources'
     steps:
     - task: AzureResourceManagerTemplateDeployment@3

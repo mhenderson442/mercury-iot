@@ -20,9 +20,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Script Include="Script.asaql" />
-    <ScriptCode Include="Script.asaql.cs">
-      <DependentUpon>Script.asaql</DependentUpon>
-    </ScriptCode>
   </ItemGroup>
   <ItemGroup>
     <Configure Include="Inputs\Input.json">
