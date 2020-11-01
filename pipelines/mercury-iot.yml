@@ -49,7 +49,7 @@ stages:
           pathToPublish: '$(Build.ArtifactStagingDirectory)' 
           artifactName: 'drop'
 - stage: ResourceDeployment
-  dependsOn: BuildStreamAnaltics
+  dependsOn: StreamAnalyticsJob
   jobs:
     - job: DeployResourceGroup
       pool:
