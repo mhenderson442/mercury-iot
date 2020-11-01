@@ -4,11 +4,13 @@ trigger:
 variables:
   group: DeploymentVariables
 
-jobs:
+stages:
+  stage: StreamAnalyticsJob
+  displayName: 'Stream Analytics Stage'
+  jobs:
   - job: BuildStreamAnaltics
     pool:
       vmImage: 'ubuntu-latest'
-    displayName: 'Build Azure Stream Analytics'
     steps:
       - task: UseDotNet@2
         displayName: 'Use .Net Preview'
@@ -47,21 +49,24 @@ jobs:
         inputs:
           pathToPublish: '$(Build.ArtifactStagingDirectory)' 
           artifactName: 'drop'
-
-  - job: CreateResourceGroup
-    pool:
-      vmImage: 'ubuntu-latest'
-    displayName: 'Create Resource Group and Resources'
-    steps:
-    - task: AzureResourceManagerTemplateDeployment@3
-      displayName: 'Create or update resource group'
-      inputs:
-        azureResourceManagerConnection: 'VSProSubscription'
-        subscriptionId: '$(deploymentSubscription)'
-        action: 'Create Or Update Resource Group'
-        resourceGroupName: 'mercury-iot'
-        location: 'Central US'
-        templateLocation: 'URL of the file'
-        csmFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.json'
-        csmParametersFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.parameters.json'
-        deploymentMode: 'Incremental'        
+    stage: ResourceDeployment
+    dependOn: StreamAnalyticsJob
+    displayName: 'Resource Deployment'
+    jobs:
+      - job: CreateResourceGroup
+        pool:
+          vmImage: 'ubuntu-latest'
+        displayName: 'Create Resource Group and Resources'
+        steps:
+        - task: AzureResourceManagerTemplateDeployment@3
+          displayName: 'Create or update resource group'
+          inputs:
+            azureResourceManagerConnection: 'VSProSubscription'
+            subscriptionId: '$(deploymentSubscription)'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: 'mercury-iot'
+            location: 'Central US'
+            templateLocation: 'URL of the file'
+            csmFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.json'
+            csmParametersFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.parameters.json'
+            deploymentMode: 'Incremental'        
