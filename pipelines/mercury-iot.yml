@@ -16,15 +16,16 @@ jobs:
           version: '5.0.x'
           includePreviewVersions: true
       - task: UseDotNet@2
-        inputs:
-          version: '3.0.x'
-          packageType: runtime
-      - task: UseDotNet@2
         displayName: 'Install .NET Core SDK'
         inputs:
           version: 5.0.x
           performMultiLevelLookup: true
           includePreviewVersions: true
+      - task: Npm@1
+        displayName: 'Install stream analytics ci/cd package'
+        inputs:
+          command: 'custom'
+          customCommand: 'install -g azure-streamanalytics-cicd'
       - task: DotNetCoreCLI@2
         displayName: 'Restored Nuget packages.'
         inputs:
