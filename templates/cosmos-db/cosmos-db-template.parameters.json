@@ -7,6 +7,12 @@
         },
         "databaseName": {
             "value": "sensor"
+        },
+        "containerName": {
+            "value": "reading"
+        },
+        "containerPartitionKey": {
+            "value": "/clientId/assetId" 
         }
     }
 }

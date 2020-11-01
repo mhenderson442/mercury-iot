@@ -13,6 +13,18 @@
             "metadata": {
                 "description": "Name of Cosmos DB Database"
             }
+        },
+        "containerName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of Cosmos DB Container"
+            }
+        },
+        "containerPartitionKey": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of Cosmos DB Container Partition Key"
+            }
         }
     },
     "functions": [],
@@ -50,7 +62,50 @@
                "options": {
                    "throughput": "400"
                }
-           }
+           },
+           "resources": [
+               {
+                   "type": "Microsoft.DocumentDb/databaseAccounts/apis/databases/containers",
+                   "name": "[concat(parameters('cosmosAccountName'), '/sql/', parameters('databaseName'), '/', parameters('containerName'))]",
+                   "apiVersion": "2016-03-31",
+                   "dependsOn": [
+                       "[resourceId('Microsoft.DocumentDB/databaseAccounts/apis/databases', parameters('cosmosAccountName'), 'sql', parameters('databaseName'))]"
+                   ],
+                   "properties": {
+                       "resource": {
+                           "id": "[parameters('containerName')]",
+                           "partitionKey": {
+                               "paths": [
+                                   "[parameters('containerPartitionKey')]"
+                               ],
+                               "kind": "hash"
+                           },
+                           "indexingPolicy": {
+                               "indexingMode": "consistent",
+                               "includedPaths": [
+                                   {
+                                       "path": "/*",
+                                       "indexes": [
+                                           {
+                                               "kind": "Hash",
+                                               "dataType": "String",
+                                               "precision": -1
+                                           }
+                                       ]
+                                   }
+                               ],
+                               "excludedPaths": [
+                                   {
+                                       "path": "/PathToNotIndex/*"
+                                   }
+                               ]
+                           }
+                       },
+                       "options": {
+                       }
+                   }
+               }
+           ]
        }
     ],
     "outputs": {}
