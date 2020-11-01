@@ -26,7 +26,7 @@ stages:
         displayName: 'Install stream analytics ci/cd package'
         inputs:
           command: 'custom'
-          customCommand: 'sudo install azure-streamanalytics-cicd'          
+          customCommand: 'install azure-streamanalytics-cicd'          
       - task: DotNetCoreCLI@2
         displayName: 'Restored Nuget packages.'
         inputs:
