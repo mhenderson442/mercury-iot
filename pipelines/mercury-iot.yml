@@ -26,17 +26,11 @@ stages:
         displayName: 'Install stream analytics ci/cd package'
         inputs:
           command: 'custom'
-          customCommand: 'install azure-streamanalytics-cicd'          
-      - task: DotNetCoreCLI@2
-        displayName: 'Restored Nuget packages.'
+          customCommand: 'install azure-streamanalytics-cicd'
+      - task: CmdLine@2
+        displayName: 'Build stream analytics project'
         inputs:
-          command: restore 
-          projects: '**/*Mercury.StreamAnalytics.asaproj'
-      - task: DotNetCoreCLI@2
-        displayName: 'Build stream analytics prokect'
-        inputs:
-          command: build
-          projects: '**/*Mercury.StreamAnalytics.asaproj'
+          script: 'azure-streamanalytics-cicd build -project $(projectRootPath)/asaproj.json -outputpath $(projectRootPath)/$(outputPath)/$(deployPath)'
       - task: CopyFiles@2
         displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
         inputs:
