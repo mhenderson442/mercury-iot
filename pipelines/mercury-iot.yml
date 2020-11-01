@@ -23,10 +23,15 @@ stages:
           performMultiLevelLookup: true
           includePreviewVersions: true
       - task: Npm@1
+        displayName: 'Reset permissions for npm install'
+        inputs:
+          command: 'custom'
+          customCommand: 'sudo chown -R $(whoami) ~/.npm'
+      - task: Npm@1
         displayName: 'Install stream analytics ci/cd package'
         inputs:
           command: 'custom'
-          customCommand: 'sudo install -g azure-streamanalytics-cicd --unsafe-perm=true --allow-root'
+          customCommand: 'sudo install -g azure-streamanalytics-cicd'          
       - task: DotNetCoreCLI@2
         displayName: 'Restored Nuget packages.'
         inputs:
