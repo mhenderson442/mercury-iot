@@ -27,3 +27,5 @@ bld/
 [Oo]bj/
 /src/mercuryiot.functionapp/Properties/PublishProfiles
 /mercury-iot/.vs/mercury-iot/v16
+src/stream-analytics/Mercury.StreamAnalytics.JobTemplate.parameters.json
+src/stream-analytics/Mercury.StreamAnalytics.JobTemplate.json

@@ -26,11 +26,11 @@ stages:
         displayName: 'Install stream analytics ci/cd package'
         inputs:
           command: 'custom'
-          customCommand: 'install azure-streamanalytics-cicd'
+          customCommand: 'install -g azure-streamanalytics-cicd'
       - task: CmdLine@2
         displayName: 'Build stream analytics project'
         inputs:
-          script: 'azure-streamanalytics-cicd build -project $(projectRootPath)/asaproj.json -outputpath $(projectRootPath)/$(outputPath)/$(deployPath)'
+          script: 'azure-streamanalytics-cicd build -project ./asaproj.json -outputpath $(projectRootPath)/$(outputPath)/$(deployPath)'
       - task: CopyFiles@2
         displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
         inputs:
