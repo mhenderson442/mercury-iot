@@ -9,17 +9,17 @@ stages:
   jobs:
   - job: BuildStreamAnaltics
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'windows-latest'
     steps:
       - task: UseDotNet@2
-        displayName:  'Use .Net Preview'
+        displayName:  'Use .Net 5'
         inputs:
-          version: '5.0.x'
+          version: 5.x
           includePreviewVersions: true
       - task: UseDotNet@2
         displayName: 'Install .NET Core SDK'
         inputs:
-          version: 5.0.x
+          version: 5.x
           performMultiLevelLookup: true
           includePreviewVersions: true
       - task: Npm@1
@@ -27,7 +27,6 @@ stages:
         inputs:
           command: 'custom'
           customCommand: 'sudo install -g azure-streamanalytics-cicd'
-          workingDir: '$(Build.SourcesDirectory)'
           verbose: true
       - task: CmdLine@2
         displayName: 'Build stream analytics project'
