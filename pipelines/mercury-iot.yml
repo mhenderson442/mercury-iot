@@ -3,6 +3,7 @@ trigger:
 
 variables:
   group: DeploymentVariables
+  npm_config_cache: $(Pipeline.Workspace)/.npm
 
 stages:
 - stage: StreamAnalyticsJob
@@ -22,6 +23,13 @@ stages:
           version: 5.x
           performMultiLevelLookup: true
           includePreviewVersions: true
+      - task: Cache@2
+        displayName: 'Cache npm'
+        inputs:
+          key: 'npm | "$(Agent.OS)" | package-lock.json'
+          restoreKeys: |
+            npm | "$(Agent.OS)"
+          path: $(npm_config_cache)
       - task: Npm@1
         displayName: 'Install stream analytics ci/cd package'
         inputs:
