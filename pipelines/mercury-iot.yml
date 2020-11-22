@@ -26,7 +26,7 @@ stages:
         displayName: 'Install stream analytics ci/cd package'
         inputs:
           command: 'custom'
-          customCommand: 'sudo install -g azure-streamanalytics-cicd'
+          customCommand: 'install -g azure-streamanalytics-cicd'
       - task: CmdLine@2
         displayName: 'Build stream analytics project'
         inputs:
