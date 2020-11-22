@@ -27,6 +27,7 @@ stages:
         inputs:
           command: 'custom'
           customCommand: 'sudo install -g azure-streamanalytics-cicd'
+          workingDir: '$(Build.SourcesDirectory)'
           verbose: true
       - task: CmdLine@2
         displayName: 'Build stream analytics project'
