@@ -22,11 +22,15 @@ stages:
           version: 5.x
           performMultiLevelLookup: true
           includePreviewVersions: true
+      - task: npmAuthenticate@0
+        displayName: 'Authenticate npm'
+        inputs:
+          workingFile: .npmrc
       - task: Npm@1
         displayName: 'Install stream analytics ci/cd package'
         inputs:
           command: 'custom'
-          customCommand: 'sudo install azure-streamanalytics-cicd'
+          customCommand: 'sudo install -g azure-streamanalytics-cicd'
           verbose: true
       - task: CmdLine@2
         displayName: 'Build stream analytics project'
