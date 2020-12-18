@@ -20,8 +20,8 @@ stages:
               location: $(location)
               azureResourceManagerConnection: $(azureResourceManagerConnection)
               templateLocation: "URL of the file"
-              csmFileLink: "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.json"
-              csmParametersFileLink: "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.parameters.json"
+              csmFileLink: $(csmFileLink)
+              csmParametersFileLink: $(csmParametersFileLink)
               deploymentMode: "Incremental"
               subscriptionId: $(deploymentSubscriptionId)
               action: "Create Or Update Resource Group"
