@@ -2,72 +2,27 @@ trigger:
   - none
 
 variables:
-  group: DeploymentVariables
-  npm_config_cache: $(Pipeline.Workspace)/.npm
+  - group: deploymentVariables
+  - group: deploymentSecrets
 
 stages:
-- stage: StreamAnalyticsJob
-  jobs:
-  - job: BuildStreamAnaltics
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-      - task: UseDotNet@2
-        displayName:  'Use .Net 5'
-        inputs:
-          version: 5.x
-          includePreviewVersions: true
-      - task: UseDotNet@2
-        displayName: 'Install .NET Core SDK'
-        inputs:
-          version: 5.x
-          performMultiLevelLookup: true
-          includePreviewVersions: true
-      - task: Cache@2
-        displayName: 'Cache npm'
-        inputs:
-          key: 'npm | "$(Agent.OS)" | package-lock.json'
-          restoreKeys: |
-            npm | "$(Agent.OS)"
-          path: $(npm_config_cache)
-      - task: Npm@1
-        displayName: 'Install stream analytics ci/cd package'
-        inputs:
-          command: 'custom'
-          customCommand: 'sudo install -g azure-streamanalytics-cicd'
-          verbose: true
-      - task: CmdLine@2
-        displayName: 'Build stream analytics project'
-        inputs:
-          script: 'azure-streamanalytics-cicd build -project ./asaproj.json -outputpath $(projectRootPath)/$(outputPath)/$(deployPath)'
-      - task: CopyFiles@2
-        displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-        inputs:
-          sourceFolder: $(system.defaultworkingdirectory)/$(outputPath)/
-          contents: '**' 
-          targetFolder: $(build.artifactstagingdirectory)
-      - task: PublishBuildArtifacts@1
-        displayName: 'Public artifact: drop'
-        inputs:
-          pathToPublish: '$(Build.ArtifactStagingDirectory)' 
-          artifactName: 'drop'
-- stage: ResourceDeployment
-  dependsOn: StreamAnalyticsJob
-  jobs:
-    - job: DeployResourceGroup
-      pool:
-        vmImage: 'ubuntu-latest'
-      displayName: 'Create Resource Group and Resources'
-      steps:
-      - task: AzureResourceManagerTemplateDeployment@3
-        displayName: 'Create or update resource group'
-        inputs:
-          azureResourceManagerConnection: 'VSProSubscription'
-          subscriptionId: '$(deploymentSubscription)'
-          action: 'Create Or Update Resource Group'
-          resourceGroupName: 'mercury-iot'
-          location: 'Central US'
-          templateLocation: 'URL of the file'
-          csmFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.json'
-          csmParametersFileLink: 'https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.parameters.json'
-          deploymentMode: 'Incremental'   
+  - stage: tme
+    jobs:
+      - job: buildStreamAnaltics
+        displayName: "Create Or Update Resource Group"
+        pool:
+          vmImage: "ubuntu-latest"
+        steps:
+          - task: AzureResourceManagerTemplateDeployment@3
+            displayName: "Azure Resource Manager Template Deployment"
+            inputs:
+              deploymentScope: "Resource Group"
+              location: $(location)
+              azureResourceManagerConnection: $(azureResourceManagerConnection)
+              templateLocation: "URL of the file"
+              csmFileLink: "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.json"
+              csmParametersFileLink: "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/mercury-iot-template.parameters.json"
+              deploymentMode: "Incremental"
+              subscriptionId: $(deploymentSubscriptionId)
+              action: "Create Or Update Resource Group"
+              resourceGroupName: $(resourceGroupName)
