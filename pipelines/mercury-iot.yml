@@ -8,7 +8,7 @@ variables:
 stages:
   - stage: tme
     jobs:
-      - job: buildStreamAnaltics
+      - job: deployMercuryIot
         displayName: "Create Or Update Resource Group"
         pool:
           vmImage: "ubuntu-latest"
