@@ -24,3 +24,4 @@ stages:
               deploymentMode: "Incremental"
               subscriptionId: $(deploymentSubscriptionId)
               action: "Create Or Update Resource Group"
+              resourceGroupName: $(resourceGroupName)
