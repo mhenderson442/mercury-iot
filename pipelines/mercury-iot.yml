@@ -18,6 +18,9 @@ stages:
             inputs:
               location: $(location)
               azureResourceManagerConnection: $(azureResourceManagerConnection)
+              templateLocation: "URL of the file"
+              csmFileLink: $(csmFileLink)
+              csmParametersFileLink: $(csmParametersFileLink)
               deploymentMode: "Incremental"
               subscriptionId: $(deploymentSubscriptionId)
               action: "Create Or Update Resource Group"
