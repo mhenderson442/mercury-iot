@@ -4,6 +4,9 @@
     "parameters": {
         "prefix": {
             "value": "mercury-"
+        },
+        "uriBase": {
+            "value": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/"
         }
     }
 }

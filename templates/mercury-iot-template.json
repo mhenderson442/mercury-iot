@@ -7,26 +7,40 @@
             "metadata": {
                 "description": "Used as as prefix for naming conventions."
             }
+        },
+        "uriBase": {
+            "type": "string",
+            "metadata": {
+                "description": "Base Uri for template links"
+            },
+            "defaultValue": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/"
         }
     },
     "functions": [],
     "variables": {
-        "hubDemploymentName": "[concat(parameters('prefix'),'HubDepoymentTemplate')]",
-        "cosmosDeploymentName": "[concat(parameters('prefix'),'CosmosDepoymentTemplate')]"
+        "hubDeploymentName": "[concat(parameters('prefix'),'HubDeploymentTemplate')]",
+        "vnetDeploymentName": "[concat(parameters('prefix'),'VnetDeploymentTemplate')]",
+        "cosmosDeploymentName": "[concat(parameters('prefix'),'CosmosDeploymentTemplate')]",
+        "hubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
+        "hubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
+        "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
+        "cosmosDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]",
+        "vnetDeploymentNameTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.json')]",
+        "vnetDeploymentNameParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.parameters.json')]"
     },
     "resources": [
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
-            "name": "[variables('hubDemploymentName')]",
+            "name": "[variables('hubDeploymentName')]",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/iot-hub/iot-hub-template.json",
+                    "uri": "[variables('hubDeploymentTemplateLink')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                    "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/iot-hub/iot-hub-template.parameters.json",
+                    "uri": "[variables('hubDeploymentTemplateParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
@@ -38,15 +52,31 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/cosmos-db/cosmos-db-template.json",
+                    "uri": "[variables('cosmosDeploymentTemplateLink')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                    "uri": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/cosmos-db/cosmos-db-template.parameters.json",
+                    "uri": "[variables('cosmosDeploymentTemplateParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
-        }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('vnetDeploymentName')]",
+            "properties": {
+                 "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('vnetDeploymentNameTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('vnetDeploymentNameParametersTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                }               
+            }
+        }  
     ],
     "outputs": {
         "output1": {
