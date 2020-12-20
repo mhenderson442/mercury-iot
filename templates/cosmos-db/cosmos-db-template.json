@@ -2,12 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "cosmosAccountName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of Cosmos Db account."
-            }
-        },
         "databaseName": {
             "type": "string",
             "metadata": {
@@ -28,10 +22,12 @@
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "cosmosAccountName": "[concat(resourceGroup().name,'-cosmos-db')]"
+    },
     "resources": [
        {
-           "name": "[parameters('cosmosAccountName')]",
+           "name": "[variables('cosmosAccountName')]",
            "type": "Microsoft.DocumentDB/databaseAccounts",
            "apiVersion": "2020-04-01",
            "location": "[resourceGroup().location]",
@@ -39,7 +35,7 @@
                "enableFreeTier": true,
                "locations": [
                    {
-                       "id": "[concat(parameters('cosmosAccountName'),'-',resourceGroup().location)]",
+                       "id": "[concat(variables('cosmosAccountName'),'-',resourceGroup().location)]",
                        "failoverPriority": 0,
                        "locationName": "[resourceGroup().location]"
                    }
@@ -52,9 +48,9 @@
        },
        {
            "type": "Microsoft.DocumentDB/databaseAccounts/apis/databases",
-           "name": "[concat(parameters('cosmosAccountName'), '/sql/', parameters('databaseName'))]",
+           "name": "[concat(variables('cosmosAccountName'), '/sql/', parameters('databaseName'))]",
            "apiVersion": "2016-03-31",
-           "dependsOn": [ "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosAccountName'))]" ],
+           "dependsOn": [ "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosAccountName'))]" ],
            "properties": {
                "resource": {
                    "id": "[parameters('databaseName')]"
@@ -66,10 +62,10 @@
            "resources": [
                {
                    "type": "Microsoft.DocumentDb/databaseAccounts/apis/databases/containers",
-                   "name": "[concat(parameters('cosmosAccountName'), '/sql/', parameters('databaseName'), '/', parameters('containerName'))]",
+                   "name": "[concat(variables('cosmosAccountName'), '/sql/', parameters('databaseName'), '/', parameters('containerName'))]",
                    "apiVersion": "2016-03-31",
                    "dependsOn": [
-                       "[resourceId('Microsoft.DocumentDB/databaseAccounts/apis/databases', parameters('cosmosAccountName'), 'sql', parameters('databaseName'))]"
+                       "[resourceId('Microsoft.DocumentDB/databaseAccounts/apis/databases', variables('cosmosAccountName'), 'sql', parameters('databaseName'))]"
                    ],
                    "properties": {
                        "resource": {

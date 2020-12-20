@@ -1,0 +1,41 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    },
+    "functions": [],
+    "variables": {
+        "privateEndpointName": "[concat(resourceGroup().name,'-iothub-private-endpoint')]",
+        "privateLinkResource": "[concat('/subscriptions/',subscription().id,'/resourceGroups/')]",
+        "virtualNetworkName": "[concat(resourceGroup().name, '-iothub')]",
+        "subnetName": "[concat(resourceGroup().name, variables('virtualNetworkName'),'/subnet-2')]",
+        "subnet": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/')]"
+    },
+    "resources": [
+        {
+            "type":"Microsoft.Network/privateEndpoints",
+            "apiVersion": "2020-05-01",
+            "name": "[variables('privateEndpointName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "subnet": {
+                    "id": "[variables('subnet')]"
+                },
+                "privateLinkServiceConnections": [
+                    {
+                        "name": "[variables('privateEndpointName')]",
+                        "properties": {
+                            "privateLinkServiceId": "[variables('privateLinkResource')]",
+                            "groupIds": ["iotHub"]                          
+                        }
+                    }
+                ]
+            }, 
+            "tags": {},
+            "dependsOn": [
+                "[variables('subnetName')]"
+            ]
+        }
+    ],
+    "outputs": {}
+}

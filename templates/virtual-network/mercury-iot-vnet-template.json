@@ -2,23 +2,19 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "virtualNetworkName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of virtual network"
-            }
-        }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "virtualNetworkName": "[concat(resourceGroup().name, '-iothub')]"
+    },
     "resources": [
         {
-            "name": "[parameters('virtualNetworkName')]",
+            "name": "[variables('virtualNetworkName')]",
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2019-11-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "displayName": "[parameters('virtualNetworkName')]"
+                "displayName": "[variables('virtualNetworkName')]"
             },
             "properties": {
                 "addressSpace": {

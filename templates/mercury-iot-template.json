@@ -2,12 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "prefix": {
-            "type": "string",
-            "metadata": {
-                "description": "Used as as prefix for naming conventions."
-            }
-        },
         "uriBase": {
             "type": "string",
             "metadata": {
@@ -18,9 +12,10 @@
     },
     "functions": [],
     "variables": {
-        "hubDeploymentName": "[concat(parameters('prefix'),'HubDeploymentTemplate')]",
-        "vnetDeploymentName": "[concat(parameters('prefix'),'VnetDeploymentTemplate')]",
-        "cosmosDeploymentName": "[concat(parameters('prefix'),'CosmosDeploymentTemplate')]",
+        "prefix": "[concat(resourceGroup().name,'-')]",
+        "hubDeploymentName": "[concat(variables('prefix'),'HubDeploymentTemplate')]",
+        "vnetDeploymentName": "[concat(variables('prefix'),'VnetDeploymentTemplate')]",
+        "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
         "hubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
         "hubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
         "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
@@ -78,10 +73,5 @@
             }
         }  
     ],
-    "outputs": {
-        "output1": {
-            "type": "string",
-            "value": "value"
-        }
-    }
+    "outputs": {}
 }
