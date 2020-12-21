@@ -7,7 +7,7 @@
     "variables": {
         "virtualNetworkName": "[concat(resourceGroup().name, '-iothub-vnet')]",
         "privateEndpointName": "[concat(variables('virtualNetworkName'),'-iothub-private-endpont')]",
-        "subnet": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('virtualNetworkName'),'/subnets/subnet-2')]",
+        "subnetId": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('virtualNetworkName'),'/subnets/subnet-2')]",
         "privateLinkResource": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.DocumentDB/databaseAccounts/',resourceGroup().name,'-cosmos-db')]"
     },
     "resources": [
@@ -36,6 +36,8 @@
                         "name": "subnet-2",
                         "properties": {
                             "addressPrefix": "10.0.1.0/24",
+                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled",
                             "serviceEndpoints": [
                                 {
                                     "service": "Microsoft.AzureCosmosDB",
@@ -72,7 +74,7 @@
             ],
             "properties": {
                 "subnet": {
-                    "id": "[variables('subnet')]"
+                    "id": "[variables('subnetId')]"
                 },
                 "privateLinkServiceConnections": [
                     {
