@@ -5,7 +5,10 @@
     },
     "functions": [],
     "variables": {
-        "virtualNetworkName": "[concat(resourceGroup().name, '-iothub-vnet')]"
+        "virtualNetworkName": "[concat(resourceGroup().name, '-iothub-vnet')]",
+        "privateEndpointName": "[concat(variables('virtualNetworkName'),'-iothub-private-endpont')]",
+        "subnet": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('virtualNetworkName'),'/subnets/subnet-2')]",
+        "privateLinkResource": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.DocumentDB/databaseAccounts/',resourceGroup().name,'-cosmos-db')]"
     },
     "resources": [
         {
@@ -54,6 +57,29 @@
                                     ]
                                 }
                             ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateEndpoints",
+            "apiVersion": "2020-05-01",
+            "name": "[variables('privateEndpointName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[variables('virtualNetworkName')]"
+            ],
+            "properties": {
+                "subnet": {
+                    "id": "[variables('subnet')]"
+                },
+                "privateLinkServiceConnections": [
+                    {
+                        "name": "[variables('privateEndpointName')]",
+                        "properties": {
+                            "privateLinkServiceConnectionState": "[variables('privateLinkResource')]",
+                            "groupIds": [ "Sql" ]
                         }
                     }
                 ]
