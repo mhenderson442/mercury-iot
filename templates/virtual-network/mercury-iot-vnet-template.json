@@ -5,7 +5,7 @@
     },
     "functions": [],
     "variables": {
-        "virtualNetworkName": "[concat(resourceGroup().name, '-iothub')]"
+        "virtualNetworkName": "[concat(resourceGroup().name, '-iothub-vnet')]"
     },
     "resources": [
         {
