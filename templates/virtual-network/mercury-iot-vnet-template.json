@@ -63,10 +63,6 @@
         "resourceId": {
             "type": "string",
             "value": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
-        },
-        "subnetResourceId": {
-            "type": "string",
-            "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets','subnet-2')]"
         }
     }
 }
