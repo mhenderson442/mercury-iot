@@ -3,22 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "databaseName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of Cosmos DB Database"
-            }
+            "type": "string"
         },
         "containerName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of Cosmos DB Container"
-            }
+            "type": "string"
         },
         "containerPartitionKey": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of Cosmos DB Container Partition Key"
-            }
+            "type": "string"
         }
     },
     "functions": [],
@@ -104,5 +95,10 @@
            ]
        }
     ],
-    "outputs": {}
+    "outputs": {
+        "resourceId": {
+            "type": "string",
+            "value": "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosAccountName'))]"
+        }
+    }
 }

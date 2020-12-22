@@ -3,34 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "d2c_partitions": {
-            "type": "string",
-            "metadata": {
-                "description": "Number of partitions"
-            }
+            "type": "string"
         },
         "features": {
-            "type": "string",
-            "metadata": {
-                "description": "description"
-            }
+            "type": "string"
         },
         "sku_name": {
-            "type": "string",
-            "metadata": {
-                "description": "Enter a SKU name"
-            }
+            "type": "string"
         },
         "sku_units": {
-            "type": "string",
-            "metadata": {
-                "description": "Enter the number of units."
-            }
+            "type": "string"
         },
         "tags": {
-            "type": "object",
-            "metadata": {
-                "description": "Tags associated with project."
-            }
+            "type": "object"
         }
     },
     "functions": [],
@@ -62,5 +47,10 @@
             "tags": "[parameters('tags')]"
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "resourceId": {
+            "type": "string",
+            "value": "[resourceId('Microsoft.Devices/IotHubs',variables('hubName'))]"
+        }
+    }
 }

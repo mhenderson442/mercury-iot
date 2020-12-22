@@ -6,10 +6,7 @@
     "functions": [],
     "variables": {
         "privateEndpointName": "[concat(resourceGroup().name,'-iothub-private-endpoint')]",
-        "privateLinkResource": "[concat('/subscriptions/',subscription().id,'/resourceGroups/')]",
-        "virtualNetworkName": "[concat(resourceGroup().name, '-iothub')]",
-        "subnetName": "[concat(resourceGroup().name, variables('virtualNetworkName'),'/subnet-2')]",
-        "subnet": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/')]"
+         "virtualNetworkName": "[concat(resourceGroup().name, '-iothub-vnet')]"
     },
     "resources": [
         {
@@ -19,23 +16,15 @@
             "location": "[resourceGroup().location]",
             "properties": {
                 "subnet": {
-                    "id": "[variables('subnet')]"
-                },
-                "privateLinkServiceConnections": [
-                    {
-                        "name": "[variables('privateEndpointName')]",
-                        "properties": {
-                            "privateLinkServiceId": "[variables('privateLinkResource')]",
-                            "groupIds": ["iotHub"]                          
-                        }
-                    }
-                ]
-            }, 
-            "tags": {},
-            "dependsOn": [
-                "[variables('subnetName')]"
-            ]
+                    "id": "[resourceId('Microsoft.Network/VirtualNetworks/subnets', variables('virtualNetworkName'), 'subnet-2')]"
+                }
+            }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "resourceId": {
+            "type": "string",
+            "value": "[resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName'))]"
+        }
+    }
 }

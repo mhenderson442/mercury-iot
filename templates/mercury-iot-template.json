@@ -13,49 +13,20 @@
     "functions": [],
     "variables": {
         "prefix": "[concat(resourceGroup().name,'-')]",
-        "hubDeploymentName": "[concat(variables('prefix'),'HubDeploymentTemplate')]",
+        // "iothubDeploymentName": "[concat(variables('prefix'),'IotHubDeploymentTemplate')]",
         "vnetDeploymentName": "[concat(variables('prefix'),'VnetDeploymentTemplate')]",
-        "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
-        "hubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
-        "hubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
-        "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
-        "cosmosDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]",
+        // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
+        // "networkInterfaceDeploymentName": "[concat(variables('prefix'),'NetworkInterfaceDeploymentTemplate')]",
+        // "hubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
+        // "hubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
+        // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
+        // "cosmosDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]",
         "vnetDeploymentNameTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.json')]",
         "vnetDeploymentNameParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.parameters.json')]"
+        // "networkInterfaceTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-network-interface.json')]",
+        // "networkInterfaceTemplateParametersLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-network-interface.parameters.json')]"
     },
     "resources": [
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('hubDeploymentName')]",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('hubDeploymentTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "[variables('hubDeploymentTemplateParametersLink')]",
-                    "contentVersion": "1.0.0.0"
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('cosmosDeploymentName')]",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('cosmosDeploymentTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "[variables('cosmosDeploymentTemplateParametersLink')]",
-                    "contentVersion": "1.0.0.0"
-                }
-            }
-        },
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
