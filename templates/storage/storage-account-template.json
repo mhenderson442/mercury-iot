@@ -5,7 +5,8 @@
     },
     "functions": [],
     "variables": {
-        "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]"
+        "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]",
+        "vnetExternalId": "[concat('/subscriptions/', subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-iothub-vnet')]"
     },
     "resources": [
         {
@@ -25,7 +26,19 @@
                 "allowBlobPublicAccess": true,
                 "networkAcls": {
                     "bypass": "AzureServices",
-                    "defaultAction": "Allow",
+                    "defaultAction": "Deny",
+                    "virtualNetworkRules": [
+                        {
+                            "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-1')]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        },
+                        {
+                            "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-2')]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        }
+                    ],
                     "ipRules": []
                 }
             }
