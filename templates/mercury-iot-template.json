@@ -22,7 +22,7 @@
         // "hubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
         // "hubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
 
-        "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template-template.json')]",
+        "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template.json')]",
         "storageDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]",
 
         // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
