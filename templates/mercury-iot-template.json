@@ -29,6 +29,7 @@
         // "cosmosDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]",
         "vnetDeploymentNameTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.json')]",
         "vnetDeploymentNameParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.parameters.json')]"
+        
         // "networkInterfaceTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-network-interface.json')]",
         // "networkInterfaceTemplateParametersLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-network-interface.parameters.json')]"
     },
