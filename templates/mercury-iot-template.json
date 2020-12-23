@@ -15,10 +15,16 @@
         "prefix": "[concat(resourceGroup().name,'-')]",
         // "iothubDeploymentName": "[concat(variables('prefix'),'IotHubDeploymentTemplate')]",
         "vnetDeploymentName": "[concat(variables('prefix'),'VnetDeploymentTemplate')]",
+        "storageDeploymentName": "[concat(variables('prefix'),'StorageDeploymentTemplate')]",
         // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
         // "networkInterfaceDeploymentName": "[concat(variables('prefix'),'NetworkInterfaceDeploymentTemplate')]",
+
         // "hubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
         // "hubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
+
+        "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template-template.json')]",
+        "storageDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]",
+
         // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
         // "cosmosDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]",
         "vnetDeploymentNameTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.json')]",
@@ -32,7 +38,7 @@
             "apiVersion": "2020-06-01",
             "name": "[variables('vnetDeploymentName')]",
             "properties": {
-                 "mode": "Incremental",
+                "mode": "Incremental",
                 "templateLink": {
                     "uri": "[variables('vnetDeploymentNameTemplateLink')]",
                     "contentVersion": "1.0.0.0"
@@ -40,9 +46,25 @@
                 "parametersLink": {
                     "uri": "[variables('vnetDeploymentNameParametersTemplateLink')]",
                     "contentVersion": "1.0.0.0"
-                }               
+                }
             }
-        }  
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('storageDeploymentName')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('storageDeploymentTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('storageDeploymentTemplateParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        }
     ],
     "outputs": {}
 }
