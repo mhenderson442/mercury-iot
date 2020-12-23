@@ -44,5 +44,10 @@
             }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "DebugExpression": {
+            "type": "string",
+            "value": "[variables('vnetExternalId')]"
+        }
+    }
 }
