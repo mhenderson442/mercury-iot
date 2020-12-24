@@ -6,7 +6,7 @@
     "functions": [],
     "variables": {
         "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]",
-        "vnetExternalId": "[concat('/subscriptions/', subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-iothub-vnet')]"
+        "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-iothub-vnet')]"
     },
     "resources": [
         {
@@ -30,13 +30,11 @@
                     "virtualNetworkRules": [
                         {
                             "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-1')]",
-                            "action": "Allow",
-                            "state": "Succeeded"
+                            "action": "Allow", "state": "succeeded"
                         },
                         {
                             "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-2')]",
-                            "action": "Allow",
-                            "state": "Succeeded"
+                            "action": "Allow"
                         }
                     ],
                     "ipRules": []
