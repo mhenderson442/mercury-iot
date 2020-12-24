@@ -1,0 +1,98 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "functions": [],
+    "variables": {
+        "streamAnalyticJobName": "[concat(resourceGroup().name,'-stream-analytics')]",
+        "outputStartMode": "JobStartTime",
+        "outputStartTime": "2019-01-01T00:00:00Z"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.StreamAnalytics/StreamingJobs",
+            "apiVersion": "2016-03-01",
+            "name": "[variables('streamAnalyticJobName')]",
+            "location": "[concat(resourceGroup().location)]",
+            "properties": {
+                "outputStartMode": "[variables('outputStartMode')]",
+                "outputStartTime": "[if(equals(variables('outputStartMode'),'CustomTime'), variables('outputStartTime'), json('null'))]",
+                "sku": {
+                    "name": "standard"
+                },
+                "jobType": "Cloud",
+                "eventsOutOfOrderPolicy": "Adjust",
+                "outputErrorPolicy": "Stop",
+                "eventsOutOfOrderMaxDelayInSeconds": 0,
+                "eventsLateArrivalMaxDelayInSeconds": 5,
+                "dataLocale": "en-US",
+                "compatibilityLevel": "1.0",
+                "contentStoragePolicy": "SystemAccount",
+                "transformation": {
+                    "name": "Transformation",
+                    "properties": {
+                        "streamingUnits": 1,
+                        "query": "SELECT *\r\nINTO Output\r\nFROM Input\r\nHAVING Temperature > 27"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "IotHubInput",
+                        "properties": {
+                            "type": "Stream",
+                            "datasource": {
+                                "type": "Microsoft.Devices/IotHubs",
+                                "properties": {
+                                    "iotHubNamespace": "[concat(resourceGroup().name,'-iothub')]",
+                                    "consumerGroupName": "$Default",
+                                    "endpoint": "messages/events",
+                                    "sharedAccessPolicyName": "iothubowner",
+                                    "sharedAccessPolicyKey": "iothubowner"
+                                }
+                            },
+                            "compression": {
+                                "type": "None"
+                            },
+                            "serialization": {
+                                "type": "Json",
+                                "properties": {
+                                    "encoding": "UTF8"
+                                }
+                            }
+                        }
+                    }
+                ],
+        "outputs": [
+          {
+            "name": "storageOutput",
+            "properties": {
+              "serialization": {
+                "type": "Json",
+                "properties": {
+                  "encoding": "UTF8",
+                  "format": "LineSeparated"
+                }
+              },
+              "datasource": {
+                "type": "Microsoft.Storage/Blob",
+                "properties": {
+                  "storageAccounts": [
+                    {
+                      "accountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]"
+                    }
+                  ],
+                  "container": "readings",
+                  "pathPattern": "",
+                  "dateFormat": "yyyy/MM/dd",
+                  "timeFormat": "HH",
+                  "authenticationMode":"Msi"
+                }
+              }
+            }
+          }
+        ]
+            }
+        }
+    ],
+    "outputs": {}
+}
