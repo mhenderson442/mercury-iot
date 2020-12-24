@@ -1,0 +1,20 @@
+{
+    "Name": "IotHubInput",
+    "Type": "Data Stream",
+    "DataSourceType": "IoT Hub",
+    "IoTHubProperties": {
+        "IotHubNamespace": "mercury-iot-iothub",
+        "EndPoint": "messages/events",
+        "SharedAccessPolicyName": "iothubowner",
+        "SharedAccessPolicyKey": null,
+        "ConsumerGroupName": "$Default"
+    },
+    "DataSourceCredentialDomain": null,
+    "Serialization": {
+        "Type": "Json",
+        "Encoding": "UTF8"
+    },
+    "PartitionKey": null,
+    "CompressionType": "None",
+    "ScriptType": "Input"
+}

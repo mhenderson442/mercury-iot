@@ -6,6 +6,7 @@
     "functions": [],
     "variables": {
         "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]",
+        "containerName": "readings",
         "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-iothub-vnet')]"
     },
     "resources": [
@@ -39,7 +40,17 @@
                     ],
                     "ipRules": []
                 }
-            }
+            },
+            "resources": [
+                {
+                    "type": "containers",
+                    "apiVersion": "2019-06-01",
+                    "name": "[variables('containerName')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+                    ]
+                }
+            ]            
         }
     ],
     "outputs": {
