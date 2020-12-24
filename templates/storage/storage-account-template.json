@@ -40,17 +40,15 @@
                     ],
                     "ipRules": []
                 }
-            },
-            "resources": [
+            }         
+        },
                 {
-                    "type": "containers",
-                    "apiVersion": "2019-06-01",
-                    "name": "[variables('containerName')]",
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
-                    ]
-                }
-            ]            
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(variables('storageAccountName'), '/default/', variables('containerName'), copyIndex())]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+            ]
         }
     ],
     "outputs": {
