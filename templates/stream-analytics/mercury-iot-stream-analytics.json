@@ -4,7 +4,8 @@
     "parameters": {},
     "functions": [],
     "variables": {
-        "streamAnalyticsJobName": "[concat(resourceGroup().name,'-stream-analytics')]"
+        "streamAnalyticsJobName": "[concat(resourceGroup().name,'-stream-analytics')]",
+        "iotHubName": "[concat(resourceGroup().name,'-iothub')]"
     },
     "resources": [
         {
@@ -48,8 +49,9 @@
                 "datasource": {
                     "type": "Microsoft.Devices/IotHubs",
                     "properties": {
-                        "iotHubNamespace": "mercury-iot-iothub",
+                        "iotHubNamespace": "[variables('iotHubName')]",
                         "sharedAccessPolicyName": "iothubowner",
+                        "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2016-02-03').primaryKey]",
                         "endpoint": "messages/events",
                         "consumerGroupName": "$Default"
                     }
@@ -81,6 +83,7 @@
                                 "accountName": "mercuryiotstorage"
                             }
                         ],
+                        "password": "",
                         "container": "readings",
                         "dateFormat": "yyyy/MM/dd",
                         "timeFormat": "HH",
