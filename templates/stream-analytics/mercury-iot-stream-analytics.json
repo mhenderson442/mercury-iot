@@ -72,7 +72,7 @@
     {
       "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
       "apiVersion": "2017-04-01-preview",
-      "name": "[concat(variables('streamAnalyticsJobName'), '/storageOutput')]",
+      "name": "[concat(variables('streamAnalyticsJobName'), '/StorageOutput')]",
       "dependsOn": [
         "[resourceId('Microsoft.StreamAnalytics/StreamingJobs', variables('streamAnalyticsJobName'))]"
       ],
