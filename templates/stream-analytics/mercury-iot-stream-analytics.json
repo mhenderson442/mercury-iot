@@ -6,8 +6,7 @@
     "variables": {
         "streamAnalyticsJobName": "[concat(resourceGroup().name,'-stream-analytics')]",
         "outputStartMode": "JobStartTime",
-        "outputStartTime": "2019-01-01T00:00:00Z",
-        "iothubResourceId": "[resourceId('Microsoft.Devices/IotHubs', concat(resourceGroup().name,'-iothub'))]"
+        "outputStartTime": "2019-01-01T00:00:00Z"
     },
     "resources": [
         {
@@ -51,7 +50,7 @@
                                     "consumerGroupName": "$Default",
                                     "endpoint": "messages/events",
                                     "sharedAccessPolicyName": "iothubowner",
-                                    "sharedAccessPolicyKey": "[listKeys(variables('iothubResourceId'), '2020-06-15').keys[0].value]"
+                                    "sharedAccessPolicyKey": "EDWJOKTwXNi1TLDIfx4m0vTde8kV6fO7QEYCd6R/IfY="
                                 }
                             },
                             "compression": {
