@@ -4,7 +4,7 @@
     "parameters": {},
     "functions": [],
     "variables": {
-        "streamAnalyticJobName": "[concat(resourceGroup().name,'-stream-analytics')]",
+        "streamAnalyticsJobName": "[concat(resourceGroup().name,'-stream-analytics')]",
         "outputStartMode": "JobStartTime",
         "outputStartTime": "2019-01-01T00:00:00Z"
     },
@@ -12,7 +12,7 @@
         {
             "type": "Microsoft.StreamAnalytics/StreamingJobs",
             "apiVersion": "2017-04-01-preview",
-            "name": "[variables('streamAnalyticJobName')]",
+            "name": "[variables('streamAnalyticsJobName')]",
             "location": "[concat(resourceGroup().location)]",
             "identity": {
               "type": "SystemAssigned"
@@ -29,7 +29,7 @@
                 "eventsOutOfOrderMaxDelayInSeconds": 0,
                 "eventsLateArrivalMaxDelayInSeconds": 5,
                 "dataLocale": "en-US",
-                "compatibilityLevel": "1.0",
+                "compatibilityLevel": "1.2",
                 "contentStoragePolicy": "SystemAccount",
                 "transformation": {
                     "name": "Transformation",
