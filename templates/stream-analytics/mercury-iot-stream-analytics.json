@@ -49,8 +49,7 @@
                                     "iotHubNamespace": "[concat(resourceGroup().name,'-iothub')]",
                                     "consumerGroupName": "$Default",
                                     "endpoint": "messages/events",
-                                    "sharedAccessPolicyName": "iothubowner",
-                                    "sharedAccessPolicyKey": "iothubowner"
+                                    "sharedAccessPolicyName": "iothubowner"
                                 }
                             },
                             "compression": {
