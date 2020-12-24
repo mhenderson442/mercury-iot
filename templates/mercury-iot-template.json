@@ -15,15 +15,22 @@
         "prefix": "[concat(resourceGroup().name,'-')]",
         "iothubDeploymentName": "[concat(variables('prefix'),'IotHubDeploymentTemplate')]",
         "vnetDeploymentName": "[concat(variables('prefix'),'VnetDeploymentTemplate')]",
+
         "storageDeploymentName": "[concat(variables('prefix'),'StorageDeploymentTemplate')]",
+        "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template.json')]",
+        "storageDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]",
+
+        "streamAnalyticsDeploymentName": "[concat(variables('prefix'),'StreamAnalyticsDeploymentTemplate')]",
+        "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.json')]",
+        "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.parameters.json')]",
+
         // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
         // "networkInterfaceDeploymentName": "[concat(variables('prefix'),'NetworkInterfaceDeploymentTemplate')]",
 
         "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
         "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
 
-        "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template.json')]",
-        "storageDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]",
+
 
         // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
         // "cosmosDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]",
@@ -84,6 +91,25 @@
                 },
                 "parametersLink": {
                     "uri": "[variables('storageDeploymentTemplateParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('streamAnalyticsDeploymentName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('streamAnalyticsDeploymentTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('streamAnalyticsDeploymentTemplateParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
