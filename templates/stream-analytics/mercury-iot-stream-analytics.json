@@ -18,8 +18,6 @@
               "type": "SystemAssigned"
             },
             "properties": {
-                "outputStartMode": "[variables('outputStartMode')]",
-                "outputStartTime": "[if(equals(variables('outputStartMode'),'CustomTime'), variables('outputStartTime'), json('null'))]",
                 "sku": {
                     "name": "standard"
                 },
