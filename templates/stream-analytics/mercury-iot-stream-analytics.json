@@ -35,7 +35,7 @@
                     "name": "Transformation",
                     "properties": {
                         "streamingUnits": 1,
-                        "query": "SELECT *\r\nINTO Output\r\nFROM Input\r\nHAVING Temperature > 27"
+                        "query": "SELECT *\r\nINTO StorageOutput\r\nFROM IotHubInput\r\nHAVING Temperature > 27"
                     }
                 },
                 "inputs": [
@@ -67,7 +67,7 @@
                 ],
         "outputs": [
           {
-            "name": "storageOutput",
+            "name": "StorageOutput",
             "properties": {
               "serialization": {
                 "type": "Json",
