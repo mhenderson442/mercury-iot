@@ -17,7 +17,7 @@
         "vnetDeploymentName": "[concat(variables('prefix'),'VnetDeploymentTemplate')]",
         "storageDeploymentName": "[concat(variables('prefix'),'StorageDeploymentTemplate')]",
         // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
-        "networkInterfaceDeploymentName": "[concat(variables('prefix'),'NetworkInterfaceDeploymentTemplate')]",
+        // "networkInterfaceDeploymentName": "[concat(variables('prefix'),'NetworkInterfaceDeploymentTemplate')]",
 
         "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
         "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
@@ -75,7 +75,7 @@
             "name": "[variables('storageDeploymentName')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
-            ]
+            ],
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
