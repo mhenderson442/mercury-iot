@@ -1,104 +1,104 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "functions": [],
-    "variables": {
-        "streamAnalyticsJobName": "[concat(resourceGroup().name,'-stream-analytics')]",
-        "iotHubName": "[concat(resourceGroup().name,'-iothub')]"
-    },
-    "resources": [
-        {
-            "type": "Microsoft.StreamAnalytics/StreamingJobs",
-            "apiVersion": "2017-04-01-preview",
-            "name": "[variables('streamAnalyticsJobName')]",
-            "location": "[concat(resourceGroup().location)]",
-            "identity": {
-              "type": "SystemAssigned"
-            },
-            "properties": {
-                "sku": {
-                    "name": "standard"
-                },
-                "jobType": "Cloud",
-                "eventsOutOfOrderPolicy": "Adjust",
-                "outputErrorPolicy": "Stop",
-                "eventsOutOfOrderMaxDelayInSeconds": 0,
-                "eventsLateArrivalMaxDelayInSeconds": 5,
-                "dataLocale": "en-US",
-                "compatibilityLevel": "1.2",
-                "contentStoragePolicy": "SystemAccount",
-                "transformation": {
-                    "name": "Transformation",
-                    "properties": {
-                        "streamingUnits": 1,
-                        "query": "SELECT *\r\nINTO StorageOutput\r\nFROM IotHubInput\r\nHAVING Temperature > 27"
-                    }
-                }
-            }
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {
+    "streamAnalyticsJobName": "[concat(resourceGroup().name,'-stream-analytics')]",
+    "iotHubName": "[concat(resourceGroup().name,'-iothub')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.StreamAnalytics/StreamingJobs",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[variables('streamAnalyticsJobName')]",
+      "location": "[concat(resourceGroup().location)]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "sku": {
+          "name": "standard"
         },
-        {
-            "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
-            "apiVersion": "2017-04-01-preview",
-            "name": "[concat(variables('streamAnalyticsJobName'), '/IotHubInput')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', variables('streamAnalyticsJobName'))]"
-            ],
-            "properties": {
-                "type": "Stream",
-                "datasource": {
-                    "type": "Microsoft.Devices/IotHubs",
-                    "properties": {
-                        "iotHubNamespace": "[variables('iotHubName')]",
-                        "sharedAccessPolicyName": "iothubowner",
-                        "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2020-06-15').primaryKey]",
-                        "endpoint": "messages/events",
-                        "consumerGroupName": "$Default"
-                    }
-                },
-                "compression": {
-                    "type": "None"
-                },
-                "serialization": {
-                    "type": "Json",
-                    "properties": {
-                        "encoding": "UTF8"
-                    }
-                }
-            }
-        },
-        {
-            "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
-            "apiVersion": "2017-04-01-preview",
-            "name": "[concat(variables('streamAnalyticsJobName'), '/storageOutput')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.StreamAnalytics/streamingjobs', variables('streamAnalyticsJobName'))]"
-            ],
-            "properties": {
-                "datasource": {
-                    "type": "Microsoft.Storage/Blob",
-                    "properties": {
-                        "storageAccounts": [
-                            {
-                                "accountName": "mercuryiotstorage"
-                            }
-                        ],
-                        "pathPattern": "",
-                        "container": "readings",
-                        "dateFormat": "yyyy/MM/dd",
-                        "timeFormat": "HH",
-                        "authenticationMode": "Msi"
-                    }
-                },
-                "serialization": {
-                    "type": "Json",
-                    "properties": {
-                        "encoding": "UTF8",
-                        "format": "LineSeparated"
-                    }
-                }
-            }
+        "jobType": "Cloud",
+        "eventsOutOfOrderPolicy": "Adjust",
+        "outputErrorPolicy": "Stop",
+        "eventsOutOfOrderMaxDelayInSeconds": 0,
+        "eventsLateArrivalMaxDelayInSeconds": 5,
+        "dataLocale": "en-US",
+        "compatibilityLevel": "1.2",
+        "contentStoragePolicy": "SystemAccount",
+        "transformation": {
+          "name": "Transformation",
+          "properties": {
+            "streamingUnits": 1,
+            "query": "SELECT *\r\nINTO StorageOutput\r\nFROM IotHubInput\r\nHAVING Temperature > 27"
+          }
         }
-    ],
-    "outputs": {}
+      }
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[concat(variables('streamAnalyticsJobName'), '/IotHubInput')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', variables('streamAnalyticsJobName'))]"
+      ],
+      "properties": {
+        "type": "Stream",
+        "datasource": {
+          "type": "Microsoft.Devices/IotHubs",
+          "properties": {
+            "iotHubNamespace": "[variables('iotHubName')]",
+            "sharedAccessPolicyName": "iothubowner",
+            "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2020-06-15').primaryKey]",
+            "endpoint": "messages/events",
+            "consumerGroupName": "$Default"
+          }
+        },
+        "compression": {
+          "type": "None"
+        },
+        "serialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+      "apiVersion": "2017-04-01-preview",
+      "name": "[concat(variables('streamAnalyticsJobName'), '/storageOutput')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', variables('streamAnalyticsJobName'))]"
+      ],
+      "properties": {
+        "datasource": {
+          "type": "Microsoft.Storage/Blob",
+          "properties": {
+            "storageAccounts": [
+              {
+                "accountName": "mercuryiotstorage"
+              }
+            ],
+            "container": "readings",
+            "pathPattern": "",
+            "dateFormat": "yyyy/MM/dd",
+            "timeFormat": "HH",
+            "authenticationMode": "Msi"
+          }
+        },
+        "serialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8",
+            "format": "LineSeparated"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {}
 }
