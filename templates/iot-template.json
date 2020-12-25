@@ -14,7 +14,7 @@
     "variables": {
         "vnetDeploymentName": "[concat(resourceGroup().name,'-vnet-deployment')]",
         "vnetDeploymentTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.json')]",
-        "vnetDeploymentParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/net-template.parameters.json')]",
+        "vnetDeploymentParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.parameters.json')]",
 
         "storageDeploymentName": "[concat(resourceGroup().name,'-storage-deployment')]",
         "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template.json')]",
