@@ -13,7 +13,7 @@
     "functions": [],
     "variables": {
         "vnetDeploymentName": "[concat(resourceGroup().name,'-vnet-deployment')]",
-        "vnetDeploymentNameTemplateLink": "[concat(resourceGroup().name,'-virtual-network/mercury-iot-vnet-template.json')]",
+        "vnetDeploymentNameTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.json')]",
         "vnetDeploymentNameParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.parameters.json')]",
 
         "storageDeploymentName": "[concat(resourceGroup().name,'-storage-deployment')]",
