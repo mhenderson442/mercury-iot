@@ -22,17 +22,15 @@
 
         "vnetStoragePrivateEndPointName": "[concat(resourceGroup().name,'-vnet-storage-private-endpoint-deployment')]",
         "vnetStoragePrivateEndPointTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-storage-private-endpoint.json')]",
-        "vnetStoragePrivateEndPointParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-storage-private-endpoint.parameters.json')]"
+        "vnetStoragePrivateEndPointParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-storage-private-endpoint.parameters.json')]",
+
+        "iothubDeploymentName": "[concat(resourceGroup().naem,'iothub-deployment')]",
+        "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
+        "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]"
 
         // "streamAnalyticsDeploymentName": "[concat(variables('prefix'),'StreamAnalyticsDeploymentTemplate')]",
         // "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.json')]",
         // "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.parameters.json')]",
-
-        // "networkInterfaceDeploymentName": "[concat(variables('prefix'),'NetworkInterfaceDeploymentTemplate')]",
-
-        // "iothubDeploymentName": "[concat(variables('prefix'),'IotHubDeploymentTemplate')]",
-        // "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
-        // "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
 
         // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
         // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
@@ -93,6 +91,24 @@
                 },
                 "parametersLink": {
                     "uri": "[variables('vnetStoragePrivateEndPointParametersTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },{
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('iothubDeploymentName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('iothubDeploymentTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('iothubDeploymentTemplateParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }

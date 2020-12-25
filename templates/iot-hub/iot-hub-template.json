@@ -2,27 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "d2c_partitions": {
-            "type": "string"
-        },
-        "features": {
-            "type": "string"
-        },
-        "sku_name": {
-            "type": "string"
-        },
-        "sku_units": {
-            "type": "string"
-        },
-        "tags": {
-            "type": "object"
-        }
     },
     "functions": [],
     "variables": {
-        "hubName": "[concat(resourceGroup().name,'-iothub')]",
-        "privateEndpointName": "[concat(resourceGroup().name,'-iothub-private-endpoint')]",
-        "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]"
+        "hubName": "[concat(resourceGroup().name,'-iothub')]"
     },
     "resources": [
         {
@@ -37,45 +20,18 @@
                 "eventHubEndpoints": {
                     "events": {
                         "retentionTimeInDays": 1,
-                        "partitionCount": "[parameters('d2c_partitions')]"
+                        "partitionCount": 4
                     }
                 },
-                "features": "[parameters('features')]"
+                "features": "None"
             },
             "sku": {
-                "name": "[parameters('sku_name')]",
-                "capacity": "[parameters('sku_units')]"
+                "name": "S1",
+                "capacity": 1
             },
-            "tags": "[parameters('tags')]"
-        },
-        {
-            "type": "Microsoft.Network/privateEndpoints",
-            "apiVersion": "2020-05-01",
-            "name": "[concat(variables('hubName'),'-private-endpoint')]",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Devices/IotHubs', variables('hubName'))]"
-            ],
-            "properties": {
-                "subnet": {
-                    "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-2')]"
-                },
-                "privateLinkServiceConnections": [
-                    {
-                        "name": "[variables('privateEndpointName')]",
-                        "properties": {
-                            "privateLinkServiceId": "[resourceId('Microsoft.Devices/IotHubs',variables('hubName'))]",
-                            "groupIds": ["iotHub"]
-                        }
-                    }
-                ]
-            }
+            "tags": {}
         }
     ],
     "outputs": {
-        "resourceId": {
-            "type": "string",
-            "value": "[resourceId('Microsoft.Devices/IotHubs',variables('hubName'))]",
-        }
     }
 }
