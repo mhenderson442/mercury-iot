@@ -24,7 +24,7 @@
         "vnetStoragePrivateEndPointTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-storage-private-endpoint.json')]",
         "vnetStoragePrivateEndPointParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-storage-private-endpoint.parameters.json')]",
 
-        "iothubDeploymentName": "[concat(resourceGroup().naem,'iothub-deployment')]",
+        "iothubDeploymentName": "[concat(resourceGroup().name,'iothub-deployment')]",
         "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
         "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]"
 
