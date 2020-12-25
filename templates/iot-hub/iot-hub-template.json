@@ -22,7 +22,7 @@
     "variables": {
         "hubName": "[concat(resourceGroup().name,'-iothub')]",
         "privateEndpointName": "[concat(resourceGroup().name,'-iothub-private-endpoint')]",
-        "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-iothub-vnet')]"
+        "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]"
     },
     "resources": [
         {

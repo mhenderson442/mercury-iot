@@ -31,7 +31,7 @@
                     "virtualNetworkRules": [
                         {
                             "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-1')]",
-                            "action": "Allow", "state": "succeeded"
+                            "action": "Allow"
                         },
                         {
                             "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-2')]",
@@ -40,9 +40,9 @@
                     ],
                     "ipRules": []
                 }
-            }         
+            }
         },
-                {
+        {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2019-06-01",
             "name": "[concat(variables('storageAccountName'), '/default/', variables('containerName'))]",
@@ -52,9 +52,6 @@
         }
     ],
     "outputs": {
-        "DebugExpression": {
-            "type": "string",
-            "value": "[variables('vnetExternalId')]"
-        }
+
     }
 }
