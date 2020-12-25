@@ -6,7 +6,7 @@
     "variables": {
         "privateEndpointName": "[concat(resourceGroup().name,'-private-endpoint-storage')]",
         "privateDnsZonesName": "privatelink.blob.core.windows.net",
-        "virtualNetworkId": "[concat(subscription().subscriptionId,'/resourceGroups/', resourceGroup().location, '/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
+        "virtualNetworkId": "[concat(subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
         "subNetId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',resourceGroup().name,'-vnet/subnets/subnet-2')]",
         "privateLinkResource": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',replace(concat(resourceGroup().name,'storage'),'-',''))]"
     },
