@@ -53,6 +53,9 @@
             "apiVersion": "2020-05-01",
             "name": "[concat(variables('hubName'),'-private-endpoint')]",
             "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Devices/IotHubs', variables('hubName'))]"
+            ],
             "properties": {
                 "subnet": {
                     "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-2')]"
