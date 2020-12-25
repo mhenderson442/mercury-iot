@@ -12,15 +12,13 @@
     },
     "functions": [],
     "variables": {
-        "prefix": "[concat(resourceGroup().name,'-')]",
-
-        "vnetDeploymentName": "[concat(variables('prefix'),'vnet-deployment')]",
-        "vnetDeploymentNameTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.json')]",
+        "vnetDeploymentName": "[concat(resourceGroup().name,'-vnet-deployment')]",
+        "vnetDeploymentNameTemplateLink": "[concat(resourceGroup().name,'-virtual-network/mercury-iot-vnet-template.json')]",
         "vnetDeploymentNameParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-vnet-template.parameters.json')]",
 
-        "storageDeploymentName": "[concat(variables('prefix'),'storage-deployment')]",
+        "storageDeploymentName": "[concat(resourceGroup().name,'-storage-deployment')]",
         "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template.json')]",
-        "storageDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]",
+        "storageDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]"
 
         // "streamAnalyticsDeploymentName": "[concat(variables('prefix'),'StreamAnalyticsDeploymentTemplate')]",
         // "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.json')]",
@@ -35,7 +33,6 @@
         // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
         // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
         // "cosmosDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]",
-
 
         // "networkInterfaceTemplateLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-network-interface.json')]",
         // "networkInterfaceTemplateParametersLink": "[concat(parameters('uriBase'),'virtual-network/mercury-iot-network-interface.parameters.json')]"
