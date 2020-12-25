@@ -7,7 +7,7 @@
     "variables": {
         "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]",
         "containerName": "readings",
-        "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-iothub-vnet')]"
+        "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]"
     },
     "resources": [
         {
