@@ -33,8 +33,8 @@
         "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
 
         "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-teployment-template')]",
-        "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.json')]",
-        "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.parameters.json')]"
+        "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.json')]",
+        "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.parameters.json')]"
 
         // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
         // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
