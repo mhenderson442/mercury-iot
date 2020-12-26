@@ -28,13 +28,13 @@
         "vnetIoTHubPrivateEndPointTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-iothub-private-endpoint.json')]",
         "vnetIoTHubPrivateEndPointParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-iothub-private-endpoint.parameters.json')]",
 
-        "iothubDeploymentName": "[concat(resourceGroup().name,'iothub-deployment')]",
+        "iothubDeploymentName": "[concat(resourceGroup().name,'-iothub-deployment')]",
         "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
-        "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]"
+        "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
 
-        "streamAnalyticsDeploymentName": "[concat(variables('prefix'),'StreamAnalyticsDeploymentTemplate')]",
+        "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-teployment-template')]",
         "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.json')]",
-        "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.parameters.json')]",
+        "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/mercury-iot-stream-analytics.parameters.json')]"
 
         // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
         // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
@@ -150,7 +150,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                    "uri": "[variables('iothubDeploymentTemplateParametersLink')]",
+                    "uri": "[variables('streamAnalyticsDeploymentTemplateParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
