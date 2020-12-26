@@ -6,7 +6,7 @@
     "variables": {
         "privateEndpointName": "[concat(resourceGroup().name,'-private-endpoint-iothub')]",
         "privateDnsZonesName": "privatelink.servicebus.windows.net",
-        // "privateDnsZonesName2": "privatelink.azure-devices.net",
+        "privateDnsZonesName2": "privatelink.azure-devices.net",
         // "virtualNetworkId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
         "subNetId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',resourceGroup().name,'-vnet/subnets/subnet-2')]",
         "privateLinkResource": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Devices/IotHubs/', resourceGroup().name,'-iothub')]"
@@ -43,19 +43,19 @@
             "name": "[variables('privateDnsZonesName')]",
             "tags": {},
             "properties": {}
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones",
+            "apiVersion": "2018-09-01",
+            "location": "global",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName'))]"
+            ],
+            "name": "[variables('privateDnsZonesName2')]",
+            "tags": {},
+            "properties": {}
         }
         //,
-        // {
-        //     "type": "Microsoft.Network/privateDnsZones",
-        //     "apiVersion": "2018-09-01",
-        //     "location": "global",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName'))]"
-        //     ],
-        //     "name": "[variables('privateDnsZonesName')]",
-        //     "tags": {},
-        //     "properties": {}
-        // },
         // {
         //     "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
         //     "apiVersion": "2018-09-01",
