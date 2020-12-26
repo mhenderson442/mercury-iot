@@ -26,7 +26,7 @@
                         "name": "[variables('privateEndpointName')]",
                         "properties": {
                             "privateLinkServiceId": "[variables('privateLinkResource')]",
-                            "groupIds": [ "blob" ]
+                            "groupIds": [ "iotHub" ]
                         }
                     }
                 ]
