@@ -45,17 +45,6 @@
             "properties": {}
         },
         {
-            "type": "Microsoft.Network/privateDnsZones",
-            "apiVersion": "2018-09-01",
-            "location": "global",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName'))]"
-            ],
-            "name": "[variables('privateDnsZonesName2')]",
-            "tags": {},
-            "properties": {}
-        },
-        {
             "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
             "apiVersion": "2018-09-01",
             "name": "[concat(variables('privateDnsZonesName'), '/', uniqueString(variables('virtualNetworkId')))]",
