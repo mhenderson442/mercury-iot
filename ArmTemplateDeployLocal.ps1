@@ -11,4 +11,5 @@ New-AzResourceGroupDeployment `
 -ResourceGroupName $resourceGroupName `
 -Mode "Incremental" `
 -TemplateParameterFile $templateParameterFile `
--TemplateFile $templateFile
+-TemplateFile $templateFile `
+-DeploymentDebugLogLevel "ResponseContent"
