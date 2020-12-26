@@ -4,7 +4,7 @@
     "parameters": {},
     "functions": [],
     "variables": {
-        "privateEndpointName": "[concat(resourceGroup().name,'-private-endpoint-storage')]",
+        "privateEndpointName": "[concat(resourceGroup().name,'-private-endpoint-iothub')]",
         "privateDnsZonesName": "privatelink.servicebus.windows.net",
         "privateDnsZonesName2": "privatelink.azure-devices.net",
         "virtualNetworkId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
