@@ -70,43 +70,44 @@
                 "registrationEnabled": false
             }
         },
-        // {
-        //     "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
-        //     "apiVersion": "2018-09-01",
-        //     "name": "[concat(variables('privateDnsZonesName2'), '/', uniqueString(variables('virtualNetworkId')))]",
-        //     "location": "global",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZonesName2'))]"
-        //     ],
-        //     "properties": {
-        //         "virtualNetwork": {
-        //             "id": "[variables('virtualNetworkId')]"
-        //         },
-        //         "registrationEnabled": false
-        //     }
-        // },
-        // {
-        //     "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
-        //     "apiVersion": "2020-05-01",
-        //     "location": "[resourceGroup().location]",
-        //     "name": "[concat(variables('privateEndpointName'), '/', 'default')]",
-        //     "properties": {
-        //         "privateDnsZoneConfigs": [
-        //             {
-        //                 "name": "privatelink-azure-devices-net",
-        //                 "properties": {
-        //                     "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName2'),'/privateLinkServiceConnections/',variables('privateDnsZonesName2'))]"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "privatelink-servicebus-windows-net",
-        //                 "properties": {
-        //                     "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName'),'/privateLinkServiceConnections/',variables('privateDnsZonesName'))]"
-        //                 }
-        //             }
-        //         ]
-        //     }
-        // }
+        {
+            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+            "apiVersion": "2018-09-01",
+            "name": "[concat(variables('privateDnsZonesName2'), '/', uniqueString(variables('virtualNetworkId')))]",
+            "location": "global",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZonesName2'))]"
+            ],
+            "properties": {
+                "virtualNetwork": {
+                    "id": "[variables('virtualNetworkId')]"
+                },
+                "registrationEnabled": false
+            }
+        }
+        ,
+        {
+            "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+            "apiVersion": "2020-05-01",
+            "location": "[resourceGroup().location]",
+            "name": "[concat(variables('privateEndpointName'), '/', 'default')]",
+            "properties": {
+                "privateDnsZoneConfigs": [
+                    {
+                        "name": "privatelink-azure-devices-net",
+                        "properties": {
+                            "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName2'),'/privateLinkServiceConnections/',variables('privateDnsZonesName2'))]"
+                        }
+                    },
+                    {
+                        "name": "privatelink-servicebus-windows-net",
+                        "properties": {
+                            "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName'),'/privateLinkServiceConnections/',variables('privateDnsZonesName'))]"
+                        }
+                    }
+                ]
+            }
+        }
     ],
     "outputs": {}
 }
