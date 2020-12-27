@@ -96,13 +96,13 @@
                     {
                         "name": "privatelink-azure-devices-net",
                         "properties": {
-                            "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName2'),'/privateLinkServiceConnections/',variables('privateDnsZonesName2'))]"
+                            "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName2'))]"
                         }
                     },
                     {
                         "name": "privatelink-servicebus-windows-net",
                         "properties": {
-                            "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName'),'/privateLinkServiceConnections/',variables('privateDnsZonesName'))]"
+                            "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName'))]"
                         }
                     }
                 ]
