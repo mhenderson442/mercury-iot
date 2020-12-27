@@ -23,11 +23,11 @@
 
         "servicebusDeploymentName": "[concat(resourceGroup().name,'-servicebus-deployment')]",
         "servicebusTemplateLink": "[concat(parameters('uriBase'),'servicebus/servicebus-template.json')]",
-        "servicebusParametersLink": "[concat(parameters('uriBase'),'servicebus/servicebus-template.parameters.json')]"
+        "servicebusParametersLink": "[concat(parameters('uriBase'),'servicebus/servicebus-template.parameters.json')]",
 
-        // "iothubDeploymentName": "[concat(resourceGroup().name,'-iothub-deployment')]",
-        // "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
-        // "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
+        "iothubDeploymentName": "[concat(resourceGroup().name,'-iothub-deployment')]",
+        "iothubTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
+        "iothubTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]"
 
         // "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-deployment-template')]",
         // "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.json')]",
@@ -91,27 +91,28 @@
                     "contentVersion": "1.0.0.0"
                 }
             }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('iothubDeploymentName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]",
+                "[resourceId('Microsoft.Resources/deployments', variables('servicebusDeploymentName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('iothubTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('iothubTemplateParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
         }
-        //,
-        // {
-        //     "type": "Microsoft.Resources/deployments",
-        //     "apiVersion": "2020-06-01",
-        //     "name": "[variables('iothubDeploymentName')]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
-        //     ],
-        //     "properties": {
-        //         "mode": "Incremental",
-        //         "templateLink": {
-        //             "uri": "[variables('iothubDeploymentTemplateLink')]",
-        //             "contentVersion": "1.0.0.0"
-        //         },
-        //         "parametersLink": {
-        //             "uri": "[variables('iothubDeploymentTemplateParametersLink')]",
-        //             "contentVersion": "1.0.0.0"
-        //         }
-        //     }
-        // },
+        // ,
         // {
         //     "type": "Microsoft.Resources/deployments",
         //     "apiVersion": "2020-06-01",
