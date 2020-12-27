@@ -19,7 +19,11 @@
 
         "storageDeploymentName": "[concat(resourceGroup().name,'-storage-deployment')]",
         "storageTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template.json')]",
-        "storageTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]"
+        "storageTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]",
+
+        "servicebusDeploymentName": "[concat(resourceGroup().name,'-servicebus-deployment')]",
+        "servicebusTemplateLink": "[concat(parameters('uriBase'),'servicebus/servucebus-template.json')]",
+        "servicebusParametersLink": "[concat(parameters('uriBase'),'servicebus/servucebus-template.parameters.json')]"
 
         // "iothubDeploymentName": "[concat(resourceGroup().name,'-iothub-deployment')]",
         // "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
@@ -65,6 +69,25 @@
                 },
                 "parametersLink": {
                     "uri": "[variables('storageTemplateParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('servicebusDeploymentName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', variables('servicebusDeploymentName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('servicebusTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('servicebusParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
