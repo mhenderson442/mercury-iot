@@ -24,12 +24,52 @@
                         "name": "subnet-1",
                         "properties": {
                             "addressPrefix": "10.0.0.0/24",
+                            "delegations": [],
                             "privateEndpointNetworkPolicies": "Disabled",
                             "privateLinkServiceNetworkPolicies": "Enabled",
                             "serviceEndpoints": [
                                 {
-                                    "locations": [ "[resourceGroup().location]" ],
-                                    "service": "Microsoft.Storage"
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "northcentralus",
+                                        "southcentralus"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.EventHub",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.AzureCosmosDB",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.AzureActiveDirectory",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.KeyVault",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.ServiceBus",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "northcentralus"
+                                    ]
                                 }
                             ]
                         }
@@ -38,12 +78,52 @@
                         "name": "subnet-2",
                         "properties": {
                             "addressPrefix": "10.0.1.0/24",
+                            "delegations": [],
                             "privateEndpointNetworkPolicies": "Disabled",
                             "privateLinkServiceNetworkPolicies": "Enabled",
                             "serviceEndpoints": [
                                 {
-                                    "locations": [ "[resourceGroup().location]" ],
-                                    "service": "Microsoft.Storage"
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "northcentralus",
+                                        "southcentralus"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.EventHub",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.AzureCosmosDB",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.AzureActiveDirectory",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.KeyVault",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.ServiceBus",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "northcentralus"
+                                    ]
                                 }
                             ]
                         }
