@@ -85,29 +85,34 @@
                 "registrationEnabled": false
             }
         }
-        // ,
-        // {
-        //     "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
-        //     "apiVersion": "2020-05-01",
-        //     "location": "[resourceGroup().location]",
-        //     "name": "[concat(variables('privateEndpointName'), '/', 'default')]",
-        //     "properties": {
-        //         "privateDnsZoneConfigs": [
-        //             {
-        //                 "name": "privatelink-azure-devices-net",
-        //                 "properties": {
-        //                     "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName2'))]"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "privatelink-servicebus-windows-net",
-        //                 "properties": {
-        //                     "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName'))]"
-        //                 }
-        //             }
-        //         ]
-        //     }
-        // } 
+        ,
+        {
+            "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+            "apiVersion": "2020-05-01",
+            "location": "[resourceGroup().location]",
+            "name": "[concat(variables('privateEndpointName'), '/', 'default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName'))]",
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZonesName'))]",
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZonesName2'))]"
+            ]
+            "properties": {
+                "privateDnsZoneConfigs": [
+                    {
+                        "name": "privatelink-azure-devices-net",
+                        "properties": {
+                            "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName2'))]"
+                        }
+                    },
+                    {
+                        "name": "privatelink-servicebus-windows-net",
+                        "properties": {
+                            "privateDnsZoneId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/privateEndpoints/',variables('privateDnsZonesName'))]"
+                        }
+                    }
+                ]
+            }
+        } 
     ],
     "outputs": {}
 }
