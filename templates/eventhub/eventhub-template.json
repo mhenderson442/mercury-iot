@@ -12,14 +12,15 @@
             "type": "Microsoft.EventHub/namespaces",
             "apiVersion": "2018-01-01-preview",
             "location": "[resourceGroup().location]",
-            "name": "[variables('eventHubName')]",
+            "name": "[variables('eventHubNamespaceName')]",
             "properties": {
                 "isAutoInflateEnabled": false,
                 "maximumThroughputUnits": 0
             },
             "sku": {
                 "name": "Standard",
-                "tier": "Standard"
+                "tier": "Standard",
+                "capacity": 1
             }
         },
         {
