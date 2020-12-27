@@ -30,13 +30,13 @@
                         "[resourceId('Microsoft.ServiceBus/namespaces/', variables('serviceBusNamespaceName'))]"
                     ],
                     "properties": {
-                        "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+                        "defaultMessageTimeToLive": "P1D",
                         "maxSizeInMegabytes": 1024,
                         "requiresDuplicateDetection": false,
                         "duplicateDetectionHistoryTimeWindow": "PT10M",
                         "enableBatchedOperations": false,
                         "supportOrdering": false,
-                        "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                        "autoDeleteOnIdle": "P1D",
                         "enablePartitioning": false,
                         "enableExpress": false
                     },
@@ -51,11 +51,11 @@
                             "properties": {
                                 "lockDuration": "PT1M",
                                 "requiresSession": false,
-                                "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+                                "defaultMessageTimeToLive": "P1D",
                                 "deadLetteringOnMessageExpiration": false,
                                 "maxDeliveryCount": 10,
                                 "enableBatchedOperations": false,
-                                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S"
+                                "autoDeleteOnIdle": "P1D"
                             }
                         }
                     ]
