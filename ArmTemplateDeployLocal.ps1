@@ -3,8 +3,8 @@
 $today=Get-Date -Format "yyyyMMddhhmmss"
 $deploymentName = $resourceGroupName + "-deployment-" + $today
 
-$templateFile = "./iot-template.json"
-$templateParameterFile = "./iot-template.parameters.json"
+$templateFile = "./templates/iot-template.json"
+$templateParameterFile = "./templates/iot-template.parameters.json"
 
 New-AzResourceGroupDeployment `
 -Name $deploymentName `

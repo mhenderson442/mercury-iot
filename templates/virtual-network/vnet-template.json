@@ -49,7 +49,8 @@
             "location": "[variables('location')]",
             "name": "[concat(variables('virtualNetworkName'), '/subnet-2')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), 'subnet-1')]"
             ],
             "properties": {
                 "addressPrefix": "10.0.1.0/24",
