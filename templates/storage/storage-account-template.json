@@ -7,14 +7,15 @@
     "variables": {
         "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]",
         "containerName": "readings",
-        "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]"
+        "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
+        "location": "[resourceGroup().location]"
     },
     "resources": [
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
             "name": "[variables('storageAccountName')]",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "sku": {
                 "name": "Standard_LRS",
                 "tier": "Standard"

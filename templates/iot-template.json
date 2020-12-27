@@ -12,37 +12,26 @@
     },
     "functions": [],
     "variables": {
+        
         "vnetDeploymentName": "[concat(resourceGroup().name,'-vnet-deployment')]",
-        "vnetDeploymentTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.json')]",
-        "vnetDeploymentParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.parameters.json')]",
+        "vnetTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.json')]",
+        "vnetParametersLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.parameters.json')]"
 
-        "storageDeploymentName": "[concat(resourceGroup().name,'-storage-deployment')]",
-        "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template.json')]",
-        "storageDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]",
+        // "storageDeploymentName": "[concat(resourceGroup().name,'-storage-deployment')]",
+        // "storageDeploymentTemplateLink": "[concat(parameters('uriBase'),'storage/storage-account-template.json')]",
+        // "storageDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'storage/storage-account-template.parameters.json')]",
 
-        "vnetStoragePrivateEndPointName": "[concat(resourceGroup().name,'-vnet-storage-private-endpoint-deployment')]",
-        "vnetStoragePrivateEndPointTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-storage-private-endpoint.json')]",
-        "vnetStoragePrivateEndPointParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-storage-private-endpoint.parameters.json')]",
+        // "iothubDeploymentName": "[concat(resourceGroup().name,'-iothub-deployment')]",
+        // "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
+        // "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
 
-        "vnetIoTHubPrivateEndPointName": "[concat(resourceGroup().name,'-vnet-iothub-private-endpoint-deployment')]",
-        "vnetIoTHubPrivateEndPointTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-iothub-private-endpoint.json')]",
-        "vnetIoTHubPrivateEndPointParametersTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-iothub-private-endpoint.parameters.json')]",
+        // "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-deployment-template')]",
+        // "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.json')]",
+        // "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.parameters.json')]",
 
-        "iothubDeploymentName": "[concat(resourceGroup().name,'-iothub-deployment')]",
-        "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
-        "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
-
-        "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-deployment-template')]",
-        "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.json')]",
-        "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.parameters.json')]",
-
-        "eventhubDeploymentName": "[concat(resourceGroup().name,'-eventhub-deployment-template')]",
-        "eventhubDeploymentTemplateLink": "[concat(parameters('uriBase'),'eventhub/eventhub-template.json')]",
-        "eventhubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'eventhub/eventhub-template.parameters.json')]"
-
-        // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
-        // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
-        // "cosmosDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]",
+        // "eventhubDeploymentName": "[concat(resourceGroup().name,'-eventhub-deployment-template')]",
+        // "eventhubDeploymentTemplateLink": "[concat(parameters('uriBase'),'eventhub/eventhub-template.json')]",
+        // "eventhubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'eventhub/eventhub-template.parameters.json')]"
     },
     "resources": [
         {
@@ -52,129 +41,90 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[variables('vnetDeploymentTemplateLink')]",
+                    "uri": "[variables('vnetTemplateLink')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                    "uri": "[variables('vnetDeploymentParametersTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('storageDeploymentName')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('storageDeploymentTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "[variables('storageDeploymentTemplateParametersLink')]",
-                    "contentVersion": "1.0.0.0"
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('vnetStoragePrivateEndPointName')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]",
-                "[resourceId('Microsoft.Resources/deployments', variables('storageDeploymentName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('vnetStoragePrivateEndPointTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "[variables('vnetStoragePrivateEndPointParametersTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('iothubDeploymentName')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('iothubDeploymentTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "[variables('iothubDeploymentTemplateParametersLink')]",
-                    "contentVersion": "1.0.0.0"
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('vnetIoTHubPrivateEndPointName')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]",
-                "[resourceId('Microsoft.Resources/deployments', variables('iothubDeploymentName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('vnetIoTHubPrivateEndPointTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "[variables('vnetIoTHubPrivateEndPointParametersTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('streamAnalyticsDeploymentName')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]",
-                "[resourceId('Microsoft.Resources/deployments', variables('iothubDeploymentName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('streamAnalyticsDeploymentTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "[variables('streamAnalyticsDeploymentTemplateParametersLink')]",
-                    "contentVersion": "1.0.0.0"
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('eventhubDeploymentName')]",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('eventhubDeploymentTemplateLink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "[variables('eventhubDeploymentTemplateParametersLink')]",
+                    "uri": "[variables('vnetParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
         }
+        //,
+        // {
+        //     "type": "Microsoft.Resources/deployments",
+        //     "apiVersion": "2020-06-01",
+        //     "name": "[variables('storageDeploymentName')]",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
+        //     ],
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('storageDeploymentTemplateLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parametersLink": {
+        //             "uri": "[variables('storageDeploymentTemplateParametersLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         }
+        //     }
+        // },
+        // {
+        //     "type": "Microsoft.Resources/deployments",
+        //     "apiVersion": "2020-06-01",
+        //     "name": "[variables('iothubDeploymentName')]",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
+        //     ],
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('iothubDeploymentTemplateLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parametersLink": {
+        //             "uri": "[variables('iothubDeploymentTemplateParametersLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         }
+        //     }
+        // },
+        // {
+        //     "type": "Microsoft.Resources/deployments",
+        //     "apiVersion": "2020-06-01",
+        //     "name": "[variables('streamAnalyticsDeploymentName')]",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]",
+        //         "[resourceId('Microsoft.Resources/deployments', variables('iothubDeploymentName'))]"
+        //     ],
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('streamAnalyticsDeploymentTemplateLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parametersLink": {
+        //             "uri": "[variables('streamAnalyticsDeploymentTemplateParametersLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         }
+        //     }
+        // },
+        // {
+        //     "type": "Microsoft.Resources/deployments",
+        //     "apiVersion": "2020-06-01",
+        //     "name": "[variables('eventhubDeploymentName')]",
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('eventhubDeploymentTemplateLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parametersLink": {
+        //             "uri": "[variables('eventhubDeploymentTemplateParametersLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         }
+        //     }
+        // }
     ],
     "outputs": {}
 }

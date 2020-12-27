@@ -5,50 +5,57 @@
     },
     "functions": [],
     "variables": {
-        "virtualNetworkName": "[concat(resourceGroup().name, '-vnet')]"
+        "virtualNetworkName": "[concat(resourceGroup().name, '-vnet')]",
+        "serviceEndponts": [
+            {
+                "locations": [ "[resourceGroup().location]" ],
+                "service": "Microsoft.Storage"
+            }
+        ],
+        "location": "[resourceGroup().location]"
     },
     "resources": [
         {
             "name": "[variables('virtualNetworkName')]",
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2019-11-01",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
                         "10.0.0.0/16"
                     ]
-                },
-                "subnets": [
-                    {
-                        "name": "subnet-1",
-                        "properties": {
-                            "addressPrefix": "10.0.0.0/24",
-                            "privateEndpointNetworkPolicies": "Disabled",
-                            "privateLinkServiceNetworkPolicies": "Enabled",
-                            "serviceEndpoints": [
-                                {
-                                    "locations": [ "[resourceGroup().location]" ],
-                                    "service": "Microsoft.Storage"
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "subnet-2",
-                        "properties": {
-                            "addressPrefix": "10.0.1.0/24",
-                            "privateEndpointNetworkPolicies": "Disabled",
-                            "privateLinkServiceNetworkPolicies": "Enabled",
-                            "serviceEndpoints": [
-                                {
-                                    "locations": [ "[resourceGroup().location]" ],
-                                    "service": "Microsoft.Storage"
-                                }
-                            ]
-                        }
-                    }
-                ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2018-06-01",
+            "location": "[variables('location')]",
+            "name": "[concat(variables('virtualNetworkName'), '/subnet-1')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.0.0.0/24",
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled",
+                "serviceEndpoints": "[variables('serviceEndponts')]"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2018-06-01",
+            "location": "[variables('location')]",
+            "name": "[concat(variables('virtualNetworkName'), '/subnet-2')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.0.1.0/24",
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled",
+                "serviceEndpoints": "[variables('serviceEndponts')]"
             }
         }
     ],
