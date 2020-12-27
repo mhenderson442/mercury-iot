@@ -32,9 +32,13 @@
         "iothubDeploymentTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
         "iothubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
 
-        "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-teployment-template')]",
+        "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-deployment-template')]",
         "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.json')]",
-        "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.parameters.json')]"
+        "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.parameters.json')]",
+
+        "eventhubDeploymentName": "[concat(resourceGroup().name,'-eventhub-deployment-template')]",
+        "eventhubDeploymentTemplateLink": "[concat(parameters('uriBase'),'eventhub/eventhub-template.json')]",
+        "eventhubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'eventhub/eventhub-template.parameters.json')]"
 
         // "cosmosDeploymentName": "[concat(variables('prefix'),'CosmosDeploymentTemplate')]",
         // "cosmosDeploymentTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
@@ -151,6 +155,22 @@
                 },
                 "parametersLink": {
                     "uri": "[variables('streamAnalyticsDeploymentTemplateParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('eventhubDeploymentName')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('eventhubDeploymentTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('eventhubDeploymentTemplateParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
