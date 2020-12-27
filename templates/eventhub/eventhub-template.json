@@ -4,8 +4,8 @@
     "parameters": {},
     "functions": [],
     "variables": {
-        "eventHubName": "[concat(resourceGroup().location,'-eventhub')]",
-        "eventHubNamespaceName": "[concat(resourceGroup().location,'-eventhub-ns')]"
+        "eventHubName": "[concat(resourceGroup().name,'-eventhub')]",
+        "eventHubNamespaceName": "[concat(resourceGroup().name,'-eventhub-ns')]"
     },
     "resources": [
         {
