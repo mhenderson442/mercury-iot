@@ -78,7 +78,7 @@
             "apiVersion": "2020-06-01",
             "name": "[variables('servicebusDeploymentName')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', variables('servicebusDeploymentName'))]"
+                "[resourceId('Microsoft.Resources/deployments', variables('vnetDeploymentName'))]"
             ],
             "properties": {
                 "mode": "Incremental",
