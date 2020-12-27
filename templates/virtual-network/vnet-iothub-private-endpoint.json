@@ -95,7 +95,7 @@
                 "[resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName'))]",
                 "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZonesName'))]",
                 "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZonesName2'))]"
-            ]
+            ],
             "properties": {
                 "privateDnsZoneConfigs": [
                     {
