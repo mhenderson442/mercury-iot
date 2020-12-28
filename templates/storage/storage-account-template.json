@@ -6,7 +6,7 @@
     "functions": [],
     "variables": {
         "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]",
-        //  "containerName": "readings",
+        "containerName": "readings",
        // "vnetExternalId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
         "location": "[resourceGroup().location]"
     },
@@ -68,7 +68,7 @@
                     "enabled": false
                 }
             }
-        }
+        },
         //,
         // {
         //     "type": "Microsoft.Storage/storageAccounts/fileServices",
@@ -116,20 +116,20 @@
         //         }
         //     }
         // },
-        // {
-        //     "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-        //     "apiVersion": "2020-08-01-preview",
-        //     "name": "[concat(variables('storageAccountName'), '/default/', variables('containerName'))]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('storageAccountName'), 'default')]",
-        //         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
-        //     ],
-        //     "properties": {
-        //         "defaultEncryptionScope": "$account-encryption-key",
-        //         "denyEncryptionScopeOverride": false,
-        //         "publicAccess": "None"
-        //     }
-        // }
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2020-08-01-preview",
+            "name": "[concat(variables('storageAccountName'), '/default/', variables('containerName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('storageAccountName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+            ],
+            "properties": {
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        }
     ],
     "outputs": {}
 }
