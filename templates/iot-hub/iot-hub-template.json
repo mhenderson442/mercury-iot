@@ -6,7 +6,8 @@
     "functions": [],
     "variables": {
         "hubName": "[concat(resourceGroup().name,'-iothub')]",
-        "location": "[resourceGroup().location]"
+        "location": "[resourceGroup().location]",
+        "serviceBusId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/',resourceGroup().name,'-servicebus-namespace/topics/sensor-readings')]"
     },
     "resources": [
         {
@@ -27,13 +28,14 @@
                 "routing": {
                     "endpoints": {
                         "serviceBusTopics": [
-                           {
-                               "authenticationType": "identityBased",
-                               "name": "sensor-readings-topic",
-                               "endpointUri": "sb://venus-iot-servicebus-namespace.servicebus.windows.net",
-                               "entityPath": "sensor-readings",
-                               "id": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/',resourceGroup().name,'-servicebus-namespace/topics/sensor-readings')]"
-                           }
+                            {
+                                "authenticationType": "identityBased",
+                                "name": "sensor-readings-topic",
+                                "connectionString": "[listKeys(resourceId('Microsoft.ServiceBus/namespaces/AuthorizationRules','venus-iot-servicebus-namespace','RootManageSharedAccessKey'),'2015-08-01').primaryConnectionString]",
+                                "endpointUri": "sb://venus-iot-servicebus-namespace.servicebus.windows.net",
+                                "entityPath": "sensor-readings",
+                                "id": "[variables('serviceBusId')]"
+                            }
                         ]
                     }
 
