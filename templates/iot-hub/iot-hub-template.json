@@ -30,7 +30,8 @@
                            {
                                "authenticationType": "identityBased",
                                "name": "sensor-readings-topic",
-                               "endpointUri": "https://venus-iot-servicebus-namespace.servicebus.windows.net/sensor-readings",
+                               "endpointUri": "sb://venus-iot-servicebus-namespace.servicebus.windows.net",
+                               "entityPath": "sensor-readings",
                                "id": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/',resourceGroup().name,'-servicebus-namespace/topics/sensor-readings')]"
                            }
                         ]
