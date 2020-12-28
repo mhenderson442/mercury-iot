@@ -38,6 +38,21 @@
                                 "subscriptionId": "[subscription().subscriptionId]",
                                 "resourceGroup": "[resourceGroup().name]"
                             }
+                        ],
+                        "storageContainers": [
+                            // {
+                            //     "authenticationType": "identityBased",
+                            //     "name": "venus-iot-storage",
+                            //     "containerName": "readings",
+                            //     "batchFrequencyInSeconds": 60,
+                            //     "encoding": "JSON",
+                            //     "maxChunkSizeInBytes": 10485760,
+                            //     "id": "",
+                            //     "endpointUri": "",
+                            //     "resourceGroup": "[resourceGroup().name]",
+                            //     "subscriptionId":"[subscription().subscriptionId]"
+
+                            // }
                         ]
                     },
                     "routes": [
