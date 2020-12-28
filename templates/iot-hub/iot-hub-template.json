@@ -7,7 +7,8 @@
     "variables": {
         "hubName": "[concat(resourceGroup().name,'-iothub')]",
         "location": "[resourceGroup().location]",
-        "serviceBusId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/',resourceGroup().name,'-servicebus-namespace/topics/sensor-readings')]"
+        "serviceBusId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/',resourceGroup().name,'-servicebus-namespace/topics/sensor-readings')]",
+        "sensorReadingTopic": "sensor-readings-topic"
     },
     "resources": [
         {
@@ -30,7 +31,7 @@
                         "serviceBusTopics": [
                             {
                                 "authenticationType": "identityBased",
-                                "name": "sensor-readings-topic",
+                                "name": "[variables('sensorReadingTopic')]",
                                 "endpointUri": "sb://venus-iot-servicebus-namespace.servicebus.windows.net",
                                 "entityPath": "sensor-readings",
                                 "id": "[variables('serviceBusId')]",
@@ -38,7 +39,15 @@
                                 "resourceGroup": "[resourceGroup().name]"
                             }
                         ]
-                    }
+                    },
+                    "routes": [
+                        {
+                            "name": "sensor-reading-route",
+                            "source": "DeviceMessages",
+                            "endpointNames": [ "[variables('sensorReadingTopic')]" ],
+                            "isEnabled": true
+                        }
+                    ]
 
                 },
                 "features": "None"
