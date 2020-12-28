@@ -24,6 +24,18 @@
                         "partitionCount": 4
                     }
                 },
+                "routing": {
+                    "endpoints": {
+                        "serviceBusTopics": [
+                           {
+                               "authenticationType": "identityBased",
+                               "name": "sensor-readings-topic",
+                               "id": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/',resourceGroup().name,'-servicebus-namespace/topics/sensor-readings')]"
+                           }
+                        ]
+                    }
+
+                },
                 "features": "None"
             },
             "sku": {
