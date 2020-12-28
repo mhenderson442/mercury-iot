@@ -83,7 +83,6 @@
                 }
             }
         },
-
         {
             "type": "Microsoft.Storage/storageAccounts/queueServices",
             "apiVersion": "2020-08-01-preview",
@@ -125,7 +124,5 @@
             }
         }
     ],
-    "outputs": {
-
-    }
+    "outputs": {}
 }
