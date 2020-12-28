@@ -29,16 +29,16 @@
                 "networkAcls": {
                     "bypass": "AzureServices",
                     "defaultAction": "Deny",
-                    // "virtualNetworkRules": [
-                    //     {
-                    //         "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-1')]",
-                    //         "action": "Allow"
-                    //     },
-                    //     {
-                    //         "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-2')]",
-                    //         "action": "Allow"
-                    //     }
-                    // ],
+                    "virtualNetworkRules": [
+                        {
+                            "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-1')]",
+                            "action": "Allow"
+                        },
+                        {
+                            "id": "[concat(variables('vnetExternalId'), '/subnets/subnet-2')]",
+                            "action": "Allow"
+                        }
+                    ],
                     "ipRules": []
                 }
             }
