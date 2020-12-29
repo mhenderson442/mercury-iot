@@ -8,7 +8,9 @@
         "hubName": "[concat(resourceGroup().name,'-iothub')]",
         "location": "[resourceGroup().location]",
         "serviceBusId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/',resourceGroup().name,'-servicebus-namespace/topics/sensor-readings')]",
-        "sensorReadingTopic": "sensor-readings-topic"
+        "sensorReadingTopic": "sensor-readings-topic",
+        "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]",
+        "containerName": "readings"
     },
     "resources": [
         {
@@ -40,19 +42,20 @@
                             }
                         ],
                         "storageContainers": [
-                            // {
-                            //     "authenticationType": "identityBased",
-                            //     "name": "venus-iot-storage",
-                            //     "containerName": "readings",
-                            //     "batchFrequencyInSeconds": 60,
-                            //     "encoding": "JSON",
-                            //     "maxChunkSizeInBytes": 10485760,
-                            //     "id": "",
-                            //     "endpointUri": "",
-                            //     "resourceGroup": "[resourceGroup().name]",
-                            //     "subscriptionId":"[subscription().subscriptionId]"
+                            {
+                                "authenticationType": "identityBased",
+                                "name": "venus-iot-storage",
+                                "containerName": "[variables('containerName')]",
+                                "fileNameFormat": "{iothub}/{partition}/{YYYY}/{MM}/{DD}/{HH}/{mm}.json",
+                                "batchFrequencyInSeconds": 60,
+                                "encoding": "JSON",
+                                "maxChunkSizeInBytes": 10485760,
+                                "id": "",
+                                "endpointUri": "[concat('https://',variables('storageAccountName'),'.blob.core.windows.net/',variables('containerName'))]",
+                                "resourceGroup": "[resourceGroup().name]",
+                                "subscriptionId":"[subscription().subscriptionId]"
 
-                            // }
+                            }
                         ]
                     },
                     "routes": [
