@@ -19,7 +19,7 @@
             "tags": {},
             "properties": {
                 "administratorLogin": "[variables('credentals').administratorLogin]",
-                "administratorLoginPassword": "[variables('credentals').administratorLoginPassword]"
+                "administratorLoginPassword": "4@xnrvw1Qi01Y$Lrhg0sV@#IH5WY2gdftX5^aDdN$v3b#Cf!nZFGeAb!648A48Ig"
             },
             "resources": [
                 {
