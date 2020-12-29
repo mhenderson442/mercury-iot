@@ -7,7 +7,7 @@
         "sqlServerName": "[concat(resourceGroup().name,'sql-databases')]",
         "credentals": {
             "administratorLogin": "[uniqueString(subscription().subscriptionId)]",
-            "administratorLoginPassword": "[concat(replace(concat(resourceGroup().name,'storage'),'-',''),'.covidsucks')]"
+            "administratorLoginPassword": "4@xnrvw1Qi01Y$Lrhg0sV@#IH5WY2gdftX5^aDdN$v3b#Cf!nZFGeAb!648A48Ig"
         }
     },
     "resources": [
@@ -19,7 +19,7 @@
             "tags": {},
             "properties": {
                 "administratorLogin": "[variables('credentals').administratorLogin]",
-                "administratorLoginPassword": "4@xnrvw1Qi01Y$Lrhg0sV@#IH5WY2gdftX5^aDdN$v3b#Cf!nZFGeAb!648A48Ig"
+                "administratorLoginPassword": "[variables('credentals').administratorLoginPassword]"
             },
             "resources": [
                 {
