@@ -8,9 +8,10 @@
         "hubName": "[concat(resourceGroup().name,'-iothub')]",
         "location": "[resourceGroup().location]",
         "serviceBusId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.ServiceBus/namespaces/',resourceGroup().name,'-servicebus-namespace/topics/sensor-readings')]",
-        "sensorReadingTopic": "sensor-readings-topic",
+        "sensorReadingTopicName": "sensor-readings-topic",
         "storageAccountName": "[replace(concat(resourceGroup().name,'storage'),'-','')]",
-        "containerName": "readings"
+        "containerName": "readings",
+        "sensorStorageName": "venus-iot-storage"
     },
     "resources": [
         {
@@ -33,7 +34,7 @@
                         "serviceBusTopics": [
                             {
                                 "authenticationType": "identityBased",
-                                "name": "[variables('sensorReadingTopic')]",
+                                "name": "[variables('sensorReadingTopicName')]",
                                 "endpointUri": "sb://venus-iot-servicebus-namespace.servicebus.windows.net",
                                 "entityPath": "sensor-readings",
                                 "id": "[variables('serviceBusId')]",
@@ -44,7 +45,7 @@
                         "storageContainers": [
                             {
                                 "authenticationType": "identityBased",
-                                "name": "venus-iot-storage",
+                                "name": "[variables('sensorStorageName')]",
                                 "containerName": "[variables('containerName')]",
                                 "fileNameFormat": "{iothub}/{partition}/{YYYY}/{MM}/{DD}/{HH}/{mm}.json",
                                 "batchFrequencyInSeconds": 60,
@@ -62,7 +63,14 @@
                         {
                             "name": "sensor-reading-route",
                             "source": "DeviceMessages",
-                            "endpointNames": [ "[variables('sensorReadingTopic')]" ],
+                            "endpointNames": [ "[variables('sensorReadingTopicName')]" ],
+                            "isEnabled": true
+                        },
+                        {
+                            "name": "sensor-storage-route",
+                            "source": "DeviceMessages",
+                            "condition": "true",
+                            "endpointNames": [ "[variables('sensorStorageName')]" ],
                             "isEnabled": true
                         }
                     ]
