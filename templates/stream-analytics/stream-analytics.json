@@ -36,71 +36,72 @@
           }
         }
       }
-    },
-    {
-      "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
-      "apiVersion": "2017-04-01-preview",
-      "name": "[concat(variables('streamAnalyticsJobName'), '/IotHubInput')]",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', variables('streamAnalyticsJobName'))]"
-      ],
-      "properties": {
-        "type": "Stream",
-        "datasource": {
-          "type": "Microsoft.Devices/IotHubs",
-          "properties": {
-            "iotHubNamespace": "[variables('iotHubName')]",
-            "sharedAccessPolicyName": "iothubowner",
-            "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2020-06-15').primaryKey]",
-            "endpoint": "messages/events",
-            "consumerGroupName": "$Default"
-          }
-        },
-        "compression": {
-          "type": "None"
-        },
-        "serialization": {
-          "type": "Json",
-          "properties": {
-            "encoding": "UTF8"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
-      "apiVersion": "2017-04-01-preview",
-      "name": "[concat(variables('streamAnalyticsJobName'), '/storageOutput')]",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', variables('streamAnalyticsJobName'))]"
-      ],
-      "properties": {
-        "datasource": {
-          "type": "Microsoft.Storage/Blob",
-          "properties": {
-            "storageAccounts": [
-              {
-                "accountName": "mercuryiotstorage"
-              }
-            ],
-            "container": "readings",
-            "pathPattern": "",
-            "dateFormat": "yyyy/MM/dd",
-            "timeFormat": "HH",
-            "authenticationMode": "Msi"
-          }
-        },
-        "serialization": {
-          "type": "Json",
-          "properties": {
-            "encoding": "UTF8",
-            "format": "LineSeparated"
-          }
-        }
-      }
     }
+    // ,
+    // {
+    //   "type": "Microsoft.StreamAnalytics/streamingjobs/inputs",
+    //   "apiVersion": "2017-04-01-preview",
+    //   "name": "[concat(variables('streamAnalyticsJobName'), '/IotHubInput')]",
+    //   "location": "[resourceGroup().location]",
+    //   "dependsOn": [
+    //     "[resourceId('Microsoft.StreamAnalytics/streamingjobs', variables('streamAnalyticsJobName'))]"
+    //   ],
+    //   "properties": {
+    //     "type": "Stream",
+    //     "datasource": {
+    //       "type": "Microsoft.Devices/IotHubs",
+    //       "properties": {
+    //         "iotHubNamespace": "[variables('iotHubName')]",
+    //         "sharedAccessPolicyName": "iothubowner",
+    //         "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Devices/IotHubs/Iothubkeys', variables('iotHubName'), 'iothubowner'), '2020-06-15').primaryKey]",
+    //         "endpoint": "messages/events",
+    //         "consumerGroupName": "$Default"
+    //       }
+    //     },
+    //     "compression": {
+    //       "type": "None"
+    //     },
+    //     "serialization": {
+    //       "type": "Json",
+    //       "properties": {
+    //         "encoding": "UTF8"
+    //       }
+    //     }
+    //   }
+    // },
+    // {
+    //   "type": "Microsoft.StreamAnalytics/streamingjobs/outputs",
+    //   "apiVersion": "2017-04-01-preview",
+    //   "name": "[concat(variables('streamAnalyticsJobName'), '/storageOutput')]",
+    //   "location": "[resourceGroup().location]",
+    //   "dependsOn": [
+    //     "[resourceId('Microsoft.StreamAnalytics/streamingjobs', variables('streamAnalyticsJobName'))]"
+    //   ],
+    //   "properties": {
+    //     "datasource": {
+    //       "type": "Microsoft.Storage/Blob",
+    //       "properties": {
+    //         "storageAccounts": [
+    //           {
+    //             "accountName": "mercuryiotstorage"
+    //           }
+    //         ],
+    //         "container": "readings",
+    //         "pathPattern": "",
+    //         "dateFormat": "yyyy/MM/dd",
+    //         "timeFormat": "HH",
+    //         "authenticationMode": "Msi"
+    //       }
+    //     },
+    //     "serialization": {
+    //       "type": "Json",
+    //       "properties": {
+    //         "encoding": "UTF8",
+    //         "format": "LineSeparated"
+    //       }
+    //     }
+    //   }
+    // }
   ],
   "outputs": {}
 }

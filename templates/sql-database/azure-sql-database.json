@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "functions": [],
+    "variables": {
+        "sqlServerName": "[concat(resourceGroup().name,'sql-datbases')]",
+        "credentals": {
+            "administratorLogin": "[uniqueString(subscription().subscriptionId)]",
+            "administratorLoginPassword": "[concat(replace(concat(resourceGroup().name,'storage'),'-',''),'.covidsucks')]"
+        }
+    },
+    "resources": [
+        {
+            "name": "[variables('sqlServerName')]",
+            "type": "Microsoft.Sql/servers",
+            "apiVersion": "2019-06-01-preview",
+            "location": "[resourceGroup().location]",
+            "tags": {},
+            "properties": {
+                "administratorLogin": "[variables('credentals').administratorLogin]",
+                "administratorLoginPassword": "[variables('credentals').administratorLoginPassword]"
+            },
+            "resources": [
+                {
+                    "type": "firewallRules",
+                    "apiVersion": "2014-04-01",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+                    ],
+                    "location": "[resourceGroup().location]",
+                    "name": "AllowAllWindowsAzureIps",
+                    "properties": {
+                        "startIpAddress": "0.0.0.0",
+                        "endIpAddress": "0.0.0.0"
+                    }
+                }
+            ]
+        }
+    ],
+    "outputs": {
+        "sqlServerOutput": {
+            "type": "object",
+            "value": "[variables('credentals')]"
+        }
+    }
+}

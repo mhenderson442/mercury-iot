@@ -27,7 +27,11 @@
 
         "iothubDeploymentName": "[concat(resourceGroup().name,'-iothub-deployment')]",
         "iothubTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
-        "iothubTemplateParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]"
+        "iothubParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
+
+        "sqlDeploymentName": "[concat(resourceGroup().name,'-sql-database-deployment-template')]",
+        "sqlTemplateLink": "[concat(parameters('uriBase'),'sql-database/azure-sql-database.json')]",
+        "sqlParametersLink": "[concat(parameters('uriBase'),'sql-database/azure-sql-database.parameters.json')]"
 
         // "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-deployment-template')]",
         // "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.json')]",
@@ -50,6 +54,22 @@
                 },
                 "parametersLink": {
                     "uri": "[variables('vnetParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('sqlDeploymentName')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('sqlTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('sqlParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
@@ -107,7 +127,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                    "uri": "[variables('iothubTemplateParametersLink')]",
+                    "uri": "[variables('iothubParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
