@@ -9,7 +9,7 @@
             "value": "reading"
         },
         "containerPartitionKey": {
-            "value": "/clientId/assetId" 
+            "value": "/deviceId" 
         }
     }
 }

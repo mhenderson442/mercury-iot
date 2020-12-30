@@ -29,9 +29,13 @@
         "iothubTemplateLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.json')]",
         "iothubParametersLink": "[concat(parameters('uriBase'),'iot-hub/iot-hub-template.parameters.json')]",
 
-        "sqlDeploymentName": "[concat(resourceGroup().name,'-sql-database-deployment-template')]",
-        "sqlTemplateLink": "[concat(parameters('uriBase'),'sql-database/azure-sql-database.json')]",
-        "sqlParametersLink": "[concat(parameters('uriBase'),'sql-database/azure-sql-database.parameters.json')]"
+        "cosmosDeploymentName": "[concat(resourceGroup().name,'-cosmos-db-deployment-template')]",
+        "cosmosTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
+        "cosmosParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]"
+
+        // "sqlDeploymentName": "[concat(resourceGroup().name,'-sql-database-deployment-template')]",
+        // "sqlTemplateLink": "[concat(parameters('uriBase'),'sql-database/azure-sql-database.json')]",
+        // "sqlParametersLink": "[concat(parameters('uriBase'),'sql-database/azure-sql-database.parameters.json')]"
 
         // "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-deployment-template')]",
         // "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.json')]",
@@ -61,19 +65,36 @@
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
-            "name": "[variables('sqlDeploymentName')]",
+            "name": "[variables('cosmosDeploymentName')]",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[variables('sqlTemplateLink')]",
+                    "uri": "[variables('cosmosTemplateLink')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                    "uri": "[variables('sqlParametersLink')]",
+                    "uri": "[variables('cosmosParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
         },
+
+        // {
+        //     "type": "Microsoft.Resources/deployments",
+        //     "apiVersion": "2020-06-01",
+        //     "name": "[variables('sqlDeploymentName')]",
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[variables('sqlTemplateLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parametersLink": {
+        //             "uri": "[variables('sqlParametersLink')]",
+        //             "contentVersion": "1.0.0.0"
+        //         }
+        //     }
+        // },
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
