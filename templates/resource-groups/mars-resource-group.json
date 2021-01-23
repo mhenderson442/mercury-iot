@@ -18,7 +18,11 @@
 
         "avsetDeploymentName": "[concat(resourceGroup().name,'-avset-deployment')]",
         "avsetTemplateLink": "[concat(parameters('uriBase'),'availability-set/availability-set-template.json')]",
-        "avsetParametersLink": "[concat(parameters('uriBase'),'availability-set/availability-set-template.parameters.json')]"
+        "avsetParametersLink": "[concat(parameters('uriBase'),'availability-set/availability-set-template.parameters.json')]",
+
+        "publicIpDeploymentName": "[concat(resourceGroup().name,'-publicip-deployment')]",
+        "publicIpTemplateLink": "[concat(parameters('uriBase'),'public-ip/public-ip-template.json')]",
+        "publicIpParametersLink": "[concat(parameters('uriBase'),'public-ip/public-ip-template.parameters.json')]"
     },
     "resources": [
         {
@@ -49,6 +53,21 @@
                 },
                 "parametersLink": {
                     "uri": "[variables('avsetParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },{
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('publicIpDeploymentName')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('publicIpTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('publicIpParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
