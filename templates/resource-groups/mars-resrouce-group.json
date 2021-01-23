@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "uriBase": {
+            "type": "string",
+            "metadata": {
+                "description": "Base Uri for template links"
+            },
+            "defaultValue": "https://raw.githubusercontent.com/mhenderson442/mercury-iot/master/templates/"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "vnetDeploymentName": "[concat(resourceGroup().name,'-vnet-deployment')]",
+        "vnetTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.json')]",
+        "vnetParametersLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.parameters.json')]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "location": "[resourceGroup().location]",
+            "name": "[variables('vnetDeploymentName')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('vnetTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('vnetParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}

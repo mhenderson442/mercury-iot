@@ -1,0 +1,18 @@
+{
+    "name": "iot-stream-analytics",
+    "startFile": "iot-stream-analytics.asaql",
+    "configurations": [
+        {
+            "filePath": "JobConfig.json",
+            "subType": "JobConfig"
+        },
+        {
+            "filePath": "Inputs/VenusIotHubInput.json",
+            "subType": "Input"
+        },
+        {
+            "filePath": "Outputs/VenusIoOutput.json",
+            "subType": "Output"
+        }
+    ]
+}

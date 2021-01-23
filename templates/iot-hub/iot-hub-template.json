@@ -64,6 +64,7 @@
                             "name": "sensor-reading-route",
                             "source": "DeviceMessages",
                             "endpointNames": [ "[variables('sensorReadingTopicName')]" ],
+                            "condition": "$body.temperature > $twin.tags.range.temperature.high",
                             "isEnabled": true
                         },
                         {

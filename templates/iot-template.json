@@ -32,18 +32,6 @@
         "cosmosDeploymentName": "[concat(resourceGroup().name,'-cosmos-db-deployment-template')]",
         "cosmosTemplateLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.json')]",
         "cosmosParametersLink": "[concat(parameters('uriBase'),'cosmos-db/cosmos-db-template.parameters.json')]"
-
-        // "sqlDeploymentName": "[concat(resourceGroup().name,'-sql-database-deployment-template')]",
-        // "sqlTemplateLink": "[concat(parameters('uriBase'),'sql-database/azure-sql-database.json')]",
-        // "sqlParametersLink": "[concat(parameters('uriBase'),'sql-database/azure-sql-database.parameters.json')]"
-
-        // "streamAnalyticsDeploymentName": "[concat(resourceGroup().name,'-stream-analytics-deployment-template')]",
-        // "streamAnalyticsDeploymentTemplateLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.json')]",
-        // "streamAnalyticsDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'stream-analytics/stream-analytics.parameters.json')]",
-
-        // "eventhubDeploymentName": "[concat(resourceGroup().name,'-eventhub-deployment-template')]",
-        // "eventhubDeploymentTemplateLink": "[concat(parameters('uriBase'),'eventhub/eventhub-template.json')]",
-        // "eventhubDeploymentTemplateParametersLink": "[concat(parameters('uriBase'),'eventhub/eventhub-template.parameters.json')]"
     },
     "resources": [
         {
