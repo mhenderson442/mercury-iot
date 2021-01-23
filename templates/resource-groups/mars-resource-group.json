@@ -14,7 +14,11 @@
     "variables": {
         "vnetDeploymentName": "[concat(resourceGroup().name,'-vnet-deployment')]",
         "vnetTemplateLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.json')]",
-        "vnetParametersLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.parameters.json')]"
+        "vnetParametersLink": "[concat(parameters('uriBase'),'virtual-network/vnet-template.parameters.json')]",
+
+        "avsetDeploymentName": "[concat(resourceGroup().name,'-avset-deployment')]",
+        "avsetTemplateLink": "[concat(parameters('uriBase'),'availability-set/availability-set-template.json')]",
+        "avsetParametersLink": "[concat(parameters('uriBase'),'availability-set/availability-set-template.parameters.json')]"
     },
     "resources": [
         {
@@ -29,6 +33,22 @@
                 },
                 "parametersLink": {
                     "uri": "[variables('vnetParametersLink')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('avsetDeploymentName')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('avsetTemplateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "[variables('avsetParametersLink')]",
                     "contentVersion": "1.0.0.0"
                 }
             }
