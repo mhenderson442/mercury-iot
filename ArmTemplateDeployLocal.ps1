@@ -1,10 +1,10 @@
-﻿$resourceGroupName = "venus-iot"
+﻿$resourceGroupName = "mars"
 
 $today=Get-Date -Format "yyyyMMddhhmmss"
 $deploymentName = $resourceGroupName + "-deployment-" + $today
 
-$templateFile = "./templates/iot-template.json"
-$templateParameterFile = "./templates/iot-template.parameters.json"
+$templateFile = "./templates/resource-groups/mars-resource-group.json"
+$templateParameterFile = ".tempaltes/resource-groups/mars-resource-group.parameters.json"
 
 New-AzResourceGroupDeployment `
 -Name $deploymentName `
