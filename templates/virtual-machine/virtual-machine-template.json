@@ -155,7 +155,7 @@
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
-                                "id": "[mars.pubcliIpAddressName(parameters('virtualMachineName'), copyIndex())]"
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/publicIPAddresses/', mars.pubcliIpAddressName(parameters('virtualMachineName'), copyIndex()))]"
                             }
                         }
                     }
