@@ -26,7 +26,7 @@
         "vnetId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/',resourceGroup().name, '-vnet')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/subnet-1')]",
         "avsetName": "[concat(resourceGroup().name,'-avset')]",
-        "publicIpAddressId": "[concat(subscription().subscriptionId,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/publicIPAddresses/',resourceGroup().name,'-ip-001')]"
+        "publicIpAddressId": "[concat(subscription().subscriptionId, '/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/publicIPAddresses/',resourceGroup().name,'-ip-001')]"
     },
     "resources": [
         {
