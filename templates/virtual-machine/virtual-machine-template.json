@@ -6,7 +6,8 @@
             "type": "string"
         },
         "adminUsername": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "marsadmin"
         },
         "virtualMachineSize": {
             "type": "string"

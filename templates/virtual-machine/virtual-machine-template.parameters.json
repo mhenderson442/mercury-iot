@@ -6,7 +6,7 @@
             "value": "mars-vm-001"
         },
         "adminUsername": {
-            "value": "adzureadmin"
+            "value": "marsadmin"
         },
         "virtualMachineSize": {
             "value": "Standard_D2s_v3"
