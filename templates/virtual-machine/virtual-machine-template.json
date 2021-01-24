@@ -23,7 +23,7 @@
     "variables": {
         "nicName": "[concat(parameters('virtualMachineName'), '-nic')]",
         "nsgName": "[concat(parameters('virtualMachineName'), '-nsg')]",
-        "vnetId": "[concat(subscription().id,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
+        "vnetId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/subnet-1')]",
         "avsetName": "[concat(resourceGroup().name,'-avset')]",
         "publicIpAddressId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/publicIPAddresses/', resourceGroup().name,'-ip-001')]"
