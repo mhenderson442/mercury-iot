@@ -183,7 +183,7 @@
                 "storageProfile": {
                     "osDisk": {
                         "createOption": "fromImage",
-                        "name": "r",
+                        "name": "[concat(parameters('virtualMachineName'),'-os-disk-', copyIndex())]",
                         "managedDisk": {
                             "storageAccountType": "[parameters('osDiskType')]"
                         }
