@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualMachineName": {
-            "value": "mars-vm-001"
+            "value": "mars-vm"
         },
         "adminUsername": {
             "value": "marsadmin"
@@ -22,6 +22,9 @@
                 },
                 "secretName": "mars-ssh-public-key"
             }
+        },
+        "instanceCount": {
+            "value": 2
         }
 
     }
