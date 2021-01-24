@@ -20,7 +20,7 @@
         },
         "instanceCount": {
             "type": "int",
-            "defaultValue": 2
+            "defaultValue": 3
         }
     },
     "functions": [
