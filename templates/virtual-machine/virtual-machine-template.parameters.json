@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachineName": {
+            "value": "mars-vm-001"
+        },
+        "adminUsername": {
+            "value": "adzureadmin"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_D2s_v3"
+        },
+        "osDiskType": {
+            "value": "Premium_LRS"
+        },
+        "adminPublicKey": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/d4b954b7-8988-4e58-89ad-dde6d5f891e4/resourceGroups/mars/providers/Microsoft.KeyVault/vaults/mar-key-vault"
+                    
+                },
+                "secretName": "mars-ssh-public-key"
+            }
+        }
+
+    }
+}

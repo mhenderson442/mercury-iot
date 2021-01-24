@@ -1,0 +1,128 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachineName": {
+            "type": "string"
+        },
+        "adminUsername": {
+            "type": "string"
+        },
+        "virtualMachineSize": {
+            "type": "string"
+        },
+        "osDiskType": {
+            "type": "string"
+        },
+        "adminPublicKey": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "nicName": "[concat(parameters('virtualMachineName'),'-nic')]",
+        "nsgName": "[concat(parameters('virtualMachineName'),'-nsg')]",
+        "vnetId": "[concat(subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/',resourceGroup().name, '-vnet')]",
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/subnet-1')]",
+        "avsetName": "[concat(resourceGroup().name,'-avset')]",
+        "publicIpAddressId": "[concat(subscription().subscriptionId,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/publicIPAddresses/',resourceGroup().name,'-ip-001')]"
+    },
+    "resources": [
+        {
+            "name": "[variables('nsgName')]",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2019-02-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "securityRules": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2020-05-01",
+            "location": "[resourceGroup().name]",
+            "name": "[variables('nicName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+            ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "subnet": {
+                                "id": "[variables('subnetRef')]"
+                            },
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIpAddress": {
+                                "id": "[variables('publicIpAddressId')]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-07-01",
+            "location": "[resourceGroup().location]",
+            "name": "[parameters('virtualMachineName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+            ],
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[parameters('virtualMachineSize')]"
+                },
+                "storageProfile": {
+                    "osDisk": {
+                        "createOption": "fromImage",
+                        "managedDisk": {
+                            "storageAccountType": "[parameters('osDiskType')]"
+                        }
+                    },
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachineName')]",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": true,
+                        "ssh": {
+                            "publicKeys": [
+                                {
+                                    "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
+                                    "keyData": "[parameters('adminPublicKey')]"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true
+                    }
+                },
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('avsetName'))]"
+                }
+            },
+            "identity": {
+                "type": "systemAssigned"
+            }
+        }
+    ],
+    "outputs": {}
+}
