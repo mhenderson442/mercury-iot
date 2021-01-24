@@ -97,7 +97,7 @@
     "variables": {
         "vnetId": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', resourceGroup().name, '-vnet')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/subnet-1')]",
-        "avsetName": "[concat(resourceGroup().name,'-avset')]"
+        "avsetName": "[concat(resourceGroup().name, '-avset')]"
     },
     "resources": [
         {
