@@ -1,7 +1,0 @@
-
-SELECT
-	*
-INTO
-	VenusIoTOutput
-FROM
-	VenusIotHubInput
